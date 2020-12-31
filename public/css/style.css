@@ -964,6 +964,7 @@ label.checkme {
     border-bottom: 1px solid #424242;
     color: #ccc;
     font-weight: 500;
+    background-color: #424242;
 }
 .header-top a {
     color: #ccc;
@@ -1170,7 +1171,7 @@ label.checkme {
 
 .main-search {
     margin-bottom: 0;
-    width: 220px;
+    width: auto;
     position: relative;
 }
 .main-search .input-lg {

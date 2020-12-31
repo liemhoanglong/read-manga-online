@@ -1,7 +1,7 @@
 // const passport = require('passport');
 // const bcrypt = require('bcryptjs');
 
-const seriesModel = require('../model/series.model');
+const seriesServices = require('../services/series.services');
 
 module.exports.showSeries = async (req, res, next) => {
 	// const[category, publisher, product] = 
@@ -11,7 +11,7 @@ module.exports.showSeries = async (req, res, next) => {
 	// 	products.getAllProduct()
 	// 	]);
 	// res.render('products', {categories: category, publish: publisher, items: product, title : 'Danh sách sản phẩm'});
-	const series = await(seriesModel.getAllSeries())
+	const series = await(seriesServices.getAllSeries())
 	console.log(series)
 	res.render('home', {series: series});
 };

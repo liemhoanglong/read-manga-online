@@ -12,9 +12,5 @@ var seriesSchema = new mongoose.Schema({
 //	countView: Number,
 }, { collection: 'series' });
 //tạo model
-var series = mongoose.model('series', seriesSchema);
 
-module.exports.getAllSeries = () => {
-	return series.find();
-}
-
+module.exports = mongoose.model("series", seriesSchema);
