@@ -1,17 +1,19 @@
 <!-- =====  CONTAINER START  ===== -->
 <div class="container">
   <!-- =====  BANNER STRAT  ===== -->
-  <div class="banner">
+  <div class="row banner">
     <div class="main-banner owl-carousel">
-      <div class="item"><a href="#"><img src="images/main_banner1.jpg" alt="Main Banner" class="img-responsive" /></a>
+      <div class="item"><a href="#"><img src="https://i.imgur.com/MSZ6Doa.png" alt="Main Banner" class="img-responsive img-banner" /></a>
       </div>
-      <div class="item"><a href="#"><img src="images/main_banner2.jpg" alt="Main Banner" class="img-responsive" /></a>
+      <div class="item"><a href="#"><img src="https://www.anr.anicastudios.com/wp-content/uploads/2017/03/NarutoBanner-695x261.jpg" alt="Main Banner" class="img-responsive img-banner" /></a>
+      </div>
+      <div class="item"><a href="#"><img src="https://i0.wp.com/www.dragonball.co/wp-content/uploads/2017/04/dragon-ball-z-extreme-butoden-banner.jpg?fit=1920%2C700" alt="Main Banner" class="img-responsive img-banner" /></a>
       </div>
     </div>
   </div>
   <!-- =====  BANNER END  ===== -->
   </ul>
-  <div class="row ">
+  <div class="row" style="background-color: #2f2e2e">
     <div class="col-sm-12 mt_30">
       <div class="category-page-wrapper mb_30">
         <div class="sort-wrapper pull-right">
@@ -33,14 +35,14 @@
         </div>
       </div>
       <div class="row">
-        {{#each series}}
+        {{#each items}}
           <div class="product-layout product-grid col-md-3 col-xs-6 ">
             <div class="item">
               <div class="product-thumb clearfix mb_30">
-                <div class="image product-imageblock"> <a href="product_detail_page.html"> <img data-name="product_image" src="images/product/product3.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive" /> <img src="images/product/product3-1.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive" /> </a>
+                <div class="image product-imageblock"> <a href="series?id={{this.id}}"> <img data-name="product_image" src="images/product/product3.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive" /> <img src="images/product/product3-1.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive" /> </a>
                 </div>
                 <div class="caption product-detail text-center">
-                  <h6 data-name="product_name" class="product-name mt_20"><a href="#" title="Casual Shirt With Ruffle Hem">{{this.name}}</a></h6>
+                  <h6 data-name="product_name" class="product-name mt_20"><a href="series?id={{this.id}}" title="Casual Shirt With Ruffle Hem">{{this.name}}</a></h6>
                   <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-x"></i></span> </div>
                 </div>
               </div>
@@ -51,14 +53,29 @@
       </div>
       <div class="pagination-nav text-center mt_50">
         <ul>
-          <li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-          <li class="active"><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+            {{#when page 'gt' 1}}
+              <li><a href="/?page=1"></i>&lt&lt</a></li>
+              <li><a href="/?page={{prepage}}"><i class="fa fa-angle-left"></i></a></li>
+            {{/when}}
+            {{#each listpage}}
+<!--               <span>{{this}} </span>
+              <span> - </span>
+              <span>{{../page}} </span> -->
+              {{#when ../page 'eq' this}}
+                <li class="active"><a href="/?page={{this}}">{{this}}</a></li>
+              {{/when}}
+              {{#when ../page 'noteq' this}}
+                <li><a href="/?page={{this}}">{{this}}</a></li>
+              {{/when}}
+            {{/each}}
+            {{#when total 'gteq' nextpage}}
+              <li><a href="/?page={{nextpage}}"><i class="fa fa-angle-right"></i></a></li>
+              <li><a href="/?page={{total}}">&gt&gt</i></a></li>
+            {{/when}}
         </ul>
       </div>
       <br/>
     </div>
   </div>
 </div>
+
