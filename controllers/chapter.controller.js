@@ -70,4 +70,10 @@ module.exports = {
     ];
     res.render("chapter/index", { title: "Chapter", id, chapter });
   },
+  create: async (req, res, next) => {
+    res.render("chapter/create", { title: "Create a new chapter" });
+  },
+  update: async (req, res, next) => {
+    res.render("chapter/update", { title: "Update a chapter" });
+  },
 };
