@@ -1,5 +1,6 @@
 const UserService = require('../services/user.services');
 
+
 module.exports = {
     getUserProfile: (req, res, next)=>{
         res.render('profile');
@@ -13,7 +14,8 @@ module.exports = {
         
     },
     logout: (req, res, next)=>{
-
+        req.logout();
+        res.redirect('/')
     },
     register: (req, res, next)=>{
     },
@@ -35,7 +37,7 @@ module.exports = {
             const userRes = await UserService.createNewUser(userData);
             console.log("userRes", userRes);
             if(userRes){
-                res.send("Đã đăng ký thành công\nVui lòng <a href='/users/login'>Đăng nhập</a>");
+                res.send(`Đã đăng ký thành công<br>Vui lòng <a href='/users/login'>Đăng nhập</a>`);
             }
             else{
                 res.send("something when wrong!");
