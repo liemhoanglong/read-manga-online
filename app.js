@@ -10,6 +10,8 @@ const passport = require('passport');
 const flash = require('connect-flash');
 
 
+const bodyParser = require('body-parser');
+
 // const passport = require('passport');
 // const session = require('express-session');
 
@@ -44,6 +46,9 @@ app.use(passport.session());
 app.use(flash());
 
 require('./config/passport')();
+// app.use('/users', express.static(path.join(__dirname, 'public')));
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(logged)
 app.use('/', indexRouter);

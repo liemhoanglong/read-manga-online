@@ -21,10 +21,10 @@ var userSchema = new mongoose.Schema({
     },
     favoriteSeries: [{
         type: mongoose.Types.ObjectId,
-        ref: "Series"
+        ref: "series"
     }]
 
 });
 //tạo model
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("user", userSchema);
