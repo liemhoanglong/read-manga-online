@@ -87,6 +87,17 @@ body {
     background: #000;
 }
 
+ion-icon {
+    --ionicon-stroke-width: 24px;
+}
+
+.btn-icon {
+    height: 40px;
+    width: 40px;
+    background-color: transparent;
+    border-radius: 50%;
+}
+
 .chapter-imageblock {
     display: flex;
     justify-content: center;
