@@ -4,6 +4,9 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
+
+const bodyParser = require('body-parser');
+
 // const passport = require('passport');
 // const flash = require('connect-flash');
 // const session = require('express-session');
@@ -28,6 +31,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/users', express.static(path.join(__dirname, 'public')));
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

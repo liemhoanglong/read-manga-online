@@ -1,0 +1,33 @@
+.user-sidebar {
+    margin-top: 10%;
+}
+
+.user-sidebar a {
+    padding: 5%;
+    font-size: large;
+}
+
+.user-container {
+    padding: 2%;
+}
+
+.user-container .row {
+    padding: 1%;
+}
+
+.title {
+    margin-bottom: 5%;
+}
+
+.submit-button {
+    text-align: center;
+    padding-top: 1%;
+}
+
+.series-posted-status {
+    font-style: italic;
+}
+
+.align-right {
+    text-align: right;
+}
