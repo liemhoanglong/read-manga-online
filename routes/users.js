@@ -27,5 +27,22 @@ router.post("/register",authNotLogin, UserController.createNewUser);
 
 router.get("/profile",authLogin , UserController.getUserProfile );
 
+// GET series posting
+router.get('/series-posting', (req, res) => {
+  res.render('series-posting');
+});
+
+// POST series post
+router.post('/series-posting', (req, res) => {
+
+  console.log(req.body);
+
+  res.redirect('/users/series-posting');
+});
+
+// GET series posted
+router.get('/series-posted', (req, res) => {
+  res.render('series-posted');
+});
 
 module.exports = router;
