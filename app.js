@@ -11,7 +11,6 @@ const flash = require('connect-flash');
 
 
 // const passport = require('passport');
-// const flash = require('connect-flash');
 // const session = require('express-session');
 
 const indexRouter = require('./routes/index');
@@ -20,17 +19,21 @@ const { authLogin, logged } = require('./middlewares/auth.mdw');
 
 const app = express();
 
-console.log(process.env.DB_HOST)
+console.log(process.env.DB_HOST);
 // connect database
-mongoose.connect(process.env.DB_HOST,{useNewUrlParser:true,useUnifiedTopology: true })
-.then(()=>console.log('Connected to database\n'))
-.catch(err=>console.log(err));
+mongoose
+  .connect(process.env.DB_HOST, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("Connected to database\n"))
+  .catch((err) => console.log(err));
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "hbs");
 
-app.use(logger('dev'));
+app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -45,21 +48,23 @@ require('./config/passport')();
 app.use(logged)
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use("/chapters", require("./routes/chapter.route"));
+// require("./middlewares/routes.mdw")(app);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.locals.error = req.app.get("env") === "development" ? err : {};
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render("error");
 });
 
 module.exports = app;
