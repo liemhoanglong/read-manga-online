@@ -1743,6 +1743,12 @@ label.checkme {
     display: inline-block;
 }
 
+.img-banner{
+    max-width: auto;
+    height: 500px;
+    object-fit: cover;
+}
+
 .left-cms {
     color: #000;
 }
@@ -1987,7 +1993,7 @@ input#amount {
     right: 10px;
 }
 
-#product-thumbnail .owl-nav .owl-prev,
+#product-thumbnail .owl-nav .owl-prev
 {
     left: 0;
 }
@@ -2371,9 +2377,13 @@ blockquote {
 }
 
 .col_3r .product-list .product-thumb .caption,
-.col_3l .product-list .product-thumb .caption {
+.col_3l .product-list .product-thumb .caption,
+.list-series{
+    margin-right: none;
+    margin-left: none;
     width: 40%;
 }
+
 
 .col_4 .product-list .product-thumb .caption {
     width: 70%;
@@ -3324,6 +3334,36 @@ a.thumbnail.active {
         width: 150px;
     }
 }
+    /* =====  END RESPONSIVE CSS  =====*/
+.content {
+    padding: 100px 0;
+    margin: 50px auto 0 auto;
+    width: 80%;
+}
+
+.list-chapter{
+    height: 300px;
+    overflow: auto;
+}
+
+a:hover{
+    color: #fa4251;
+}
+
+.series-img{
+    height: 300px;
+    /*object-fit: cover;*/
+}
+
+.series-img:hover{
+    box-shadow: 0 0 8px gray;
+    opacity: 1;
+    transition: 0.5s;
+    transform: scale(1.05);
+}
+
+.series-box-img{
+    text-align: center;
+}
 
 
-/* =====  END RESPONSIVE CSS  =====*/
