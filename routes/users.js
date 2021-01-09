@@ -20,7 +20,7 @@ router.post(
     failureFlash: true
   })
 );
-
+router.get("/logout",authLogin , UserController.logout)
 router.get("/register",authNotLogin, UserController.getRegisterPage);
 
 router.post("/register",authNotLogin, UserController.createNewUser);

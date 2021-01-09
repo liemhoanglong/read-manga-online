@@ -45,6 +45,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
+const hbs = require('hbs');
+require('./config/hbsHelper')(hbs);
+
 require('./config/passport')();
 // app.use('/users', express.static(path.join(__dirname, 'public')));
 

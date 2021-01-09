@@ -57,18 +57,15 @@
             </div>
             <div class="col-xs-12 col-sm-4">
               <ul class="header-top-right text-right">
-                <li class="account"><a href="account.html">Account</a></li>
-                <li class="account"><a href="login.html">Login {{user.email}}</a></li>
-                <li class="account"><a href="signup.html">Sign up</a></li>
+                {{#ifUnd user}}
+                <li class="account"><a href="/users/login">Login</a></li>
+                <li class="account"><a href="/users/register">Register</a></li>
+                {{else}}
+                <li class="account"><a href="/users/profile">{{user.email}}</a></li>
+                <li class="account"><a href="/users/logout">Log out</a></li>
+                {{/ifUnd}}
               </ul>
             </div>
-          </div>
-          <div class="col-xs-12 col-sm-4">
-            <ul class="header-top-right text-right">
-              <li class="account"><a href="account.html">Account</a></li>
-              <li class="account"><a href="login.html">Login</a></li>
-              <li class="account"><a href="signup.html">Sign up</a></li>
-            </ul>
           </div>
           <nav class="navbar">
             <p>menu</p>
