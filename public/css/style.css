@@ -1743,6 +1743,12 @@ label.checkme {
     display: inline-block;
 }
 
+.img-banner {
+    max-width: auto;
+    height: 500px;
+    object-fit: cover;
+}
+
 .left-cms {
     color: #000;
 }
@@ -2370,7 +2376,10 @@ blockquote {
 }
 
 .col_3r .product-list .product-thumb .caption,
-.col_3l .product-list .product-thumb .caption {
+.col_3l .product-list .product-thumb .caption,
+.list-series {
+    margin-right: none;
+    margin-left: none;
     width: 40%;
 }
 
@@ -3326,3 +3335,34 @@ a.thumbnail.active {
 
 
 /* =====  END RESPONSIVE CSS  =====*/
+
+.content {
+    padding: 100px 0;
+    margin: 50px auto 0 auto;
+    width: 80%;
+}
+
+.list-chapter {
+    height: 300px;
+    overflow: auto;
+}
+
+a:hover {
+    color: #fa4251;
+}
+
+.series-img {
+    height: 300px;
+    /*object-fit: cover;*/
+}
+
+.series-img:hover {
+    box-shadow: 0 0 8px gray;
+    opacity: 1;
+    transition: 0.5s;
+    transform: scale(1.05);
+}
+
+.series-box-img {
+    text-align: center;
+}

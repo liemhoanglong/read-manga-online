@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="list-group user-sidebar">
+                <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+                    Thông tin tài khoản
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">Đang theo dõi</a>
+                <a href="#" class="list-group-item list-group-item-action">Truyện đã đăng</a>
+            </div>
+        </div>
+        <div class="col-sm-9 user-container">
+            <h1 class="title">Đăng truyện</h1>
+            <form action="/users/series-posting" method="POST">
+                <div class="row">
+                    <label for="name" class="col-sm-3 col-form-label"><i class="fas fa-link"></i> Link ảnh bìa</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="thumbnail" id="thumbnail">
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="name" class="col-sm-3 col-form-label"><i class="fas fa-book-open"></i> Tên
+                        truyện</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="name" id="name">
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="author" class="col-sm-3 col-form-label"><i class="fas fa-user"></i> Tác giả</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="author" id="author">
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="genre" class="col-sm-3 col-form-label"><i class="fas fa-tags"></i> Thể loại</label>
+                    <div class="col-sm-9">
+                        <select class="form-select" aria-label="Default select example" name="genre" id="genre">
+                            <option selected>Manga</option>
+                            <option value="1">Manhwa</option>
+                            <option value="2">Manhua</option>
+                            <option value="3">Comic</option>
+                        </select>
+                        <button type="button" class="btn btn-secondary"><i class="fas fa-plus"></i> Thêm thể loại</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="genre" class="col-sm-3 col-form-label"><i class="far fa-file-alt"></i> Nội dung</label>
+                </div>
+                <div class="row">
+                    <div class="form-floating">
+                        <textarea class="form-control" name="summary" id="summary"></textarea>
+                    </div>
+                </div>
+                <div class="row submit-button">
+                    <button type="submit" class="btn btn-secondary">Đăng truyện</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
