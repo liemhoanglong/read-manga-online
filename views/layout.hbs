@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Dark look E-commerce Bootstrap Template</title>
+  <title>Website đọc truyện tranh</title>
   <!-- =====  SEO MATE  ===== -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="description" content="">
@@ -30,7 +30,7 @@
   <link rel="stylesheet" type="text/css" href="/css/style.css">
   <link rel="stylesheet" type="text/css" href="/css/magnific-popup.css">
   <link rel="stylesheet" type="text/css" href="/css/owl.carousel.css">
-  <link rel="shortcut icon" href="/images/favicon.png">
+  <link rel="shortcut icon" href="/images/logo.svg">
   <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
   <link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png">
   <link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png">
@@ -58,27 +58,26 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-xs-12 col-sm-4">
-          <div class="main-search mt_40">
-            <input id="search-input" name="search" value="" placeholder="Search" class="form-control input-lg"
-              autocomplete="off" type="text">
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-default btn-lg"><i class="fa fa-search"></i></button>
-            </span>
+          <div class="col-xs-12 col-sm-4">
+            <div class="main-search mt_40">
+              <input id="search-input" name="search" value="" placeholder="Search" class="form-control input-lg"
+                autocomplete="off" type="text">
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default btn-lg"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
           </div>
-        </div>
-        <div class="col-xs-12 col-sm-4">
-          <ul class="header-top-right text-right">
-            {{#ifUnd user}}
-            <li class="account"><a href="/users/login">Login</a></li>
-            <li class="account"><a href="/users/register">Register</a></li>
-            {{else}}
-            <li class="account"><a href="/users/profile">{{user.email}}</a></li>
-            <li class="account"><a href="/users/logout">Log out</a></li>
-            {{/ifUnd}}
-          </ul>
-
+          <div class="col-xs-12 col-sm-4">
+            <ul class="header-top-right text-right">
+              {{#ifUnd user}}
+              <li class="account"><a href="/users/login">Login</a></li>
+              <li class="account"><a href="/users/register">Register</a></li>
+              {{else}}
+              <li class="account"><a href="/users/profile">{{user.email}}</a></li>
+              <li class="account"><a href="/users/logout">Log out</a></li>
+              {{/ifUnd}}
+            </ul>
+          </div>
         </div>
       </div>
       <nav class="navbar">
@@ -255,7 +254,7 @@
   <!-- =====  FOOTER START  ===== -->
   <div class="footer pt_60">
     <div class="container">
-      <div class="newsletters mt_30 mb_50">
+      {{!-- <div class="newsletters mt_30 mb_50">
         <div class="row">
           <div class="col-sm-6">
             <div class="news-head pull-left">
@@ -275,47 +274,50 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> --}}
       <div class="row">
-        <div class="col-md-3 footer-block">
-          <h6 class="footer-title ptb_20">Information</h6>
-          <ul>
+        <div class="col-md-2 footer-block">
+          <h6 class="footer-title ptb_20">Liên hệ</h6>
+          {{!-- <ul>
             <li><a href="#">About Us</a></li>
             <li><a href="#">Delivery Information</a></li>
             <li><a href="#">Privacy Policy</a></li>
             <li><a href="#">Terms & Conditions</a></li>
             <li><a href="contact.html">Contact Us</a></li>
-          </ul>
+          </ul> --}}
         </div>
-        <div class="col-md-3 footer-block">
-          <h6 class="footer-title ptb_20">Services</h6>
+        <div class="col-md-2 footer-block">
+          {{!-- <h6 class="footer-title ptb_20">Services</h6>
           <ul>
             <li><a href="#">Returns</a></li>
             <li><a href="#">Site Map</a></li>
             <li><a href="#">Wish List</a></li>
             <li><a href="#">My Account</a></li>
             <li><a href="#">Order History</a></li>
-          </ul>
+          </ul> --}}
+          SĐT: 0969696969
         </div>
         <div class="col-md-3 footer-block">
-          <h6 class="footer-title ptb_20">Extras</h6>
+          {{!-- <h6 class="footer-title ptb_20">Extras</h6>
           <ul>
             <li><a href="#">Brands</a></li>
             <li><a href="#">Gift Certificates</a></li>
             <li><a href="#">Affiliates</a></li>
             <li><a href="#">Specials</a></li>
             <li><a href="#">Newsletter</a></li>
-          </ul>
+          </ul> --}}
+          Email: incognito@gmail.com
         </div>
-        <div class="col-md-3 footer-block">
-          <h6 class="footer-title ptb_20">Contacts</h6>
+        <div class="col-md-5 footer-block">
+          {{!-- <h6 class="footer-title ptb_20">Contacts</h6>
           <ul>
             <li>Warehouse & Offices,</li>
             <li>12345 Street name, California USA</li>
             <li>(+024) 666 888</li>
             <li>leonode.wc@gmail.com</li>
             <li><a href="http://www.lionode.com/">www.lionode.com</a></li>
-          </ul>
+          </ul> --}}
+          Địa chỉ: Trường Đại học Khoa học Tự nhiên - ĐHQG HCM
         </div>
       </div>
     </div>
@@ -323,7 +325,7 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-4">
-            <div class="social_icon">
+            {{!-- <div class="social_icon">
               <ul>
                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                 <li><a href="#"><i class="fa fa-google"></i></a></li>
@@ -331,13 +333,13 @@
                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                 <li><a href="#"><i class="fa fa-rss"></i></a></li>
               </ul>
-            </div>
+            </div> --}}
           </div>
           <div class="col-sm-4">
-            <div class="copyright-part text-center">@ 2017 All Rights Reserved Darklook</div>
+            <div class="copyright-part text-center">@ 2021 All Rights Reserved Incognito</div>
           </div>
           <div class="col-sm-4">
-            <div class="payment-icon text-right">
+            {{!-- <div class="payment-icon text-right">
               <ul>
                 <li><i class="fa fa-cc-paypal "></i></li>
                 <li><i class="fa fa-cc-visa"></i></li>
@@ -345,7 +347,7 @@
                 <li><i class="fa fa-cc-mastercard"></i></li>
                 <li><i class="fa fa-cc-amex"></i></li>
               </ul>
-            </div>
+            </div> --}}
           </div>
         </div>
       </div>
