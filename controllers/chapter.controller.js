@@ -70,10 +70,32 @@ module.exports = {
     ];
     res.render("chapter/index", { title: "Chapter", id, chapter });
   },
-  create: async (req, res, next) => {
+  vwCreate: async (req, res, next) => {
     res.render("chapter/create", { title: "Create a new chapter" });
   },
-  update: async (req, res, next) => {
+  vwUpdate: async (req, res, next) => {
     res.render("chapter/update", { title: "Update a chapter" });
+  },
+  create: async (req, res, next) => {
+    const err = false;
+    if (err) {
+      res.json({
+        error: err,
+      });
+    }
+    res.json({
+      message: "Hero deleted successfully",
+    });
+  },
+  update: async (req, res, next) => {
+    const err = false;
+    if (err) {
+      res.json({
+        error: err,
+      });
+    }
+    res.json({
+      message: "Hero deleted successfully",
+    });
   },
 };

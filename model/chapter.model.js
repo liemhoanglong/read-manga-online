@@ -26,6 +26,6 @@ const chapterSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-const Chapter = mongoose.model("chapter", chatSchema);
+const Chapter = mongoose.model("chapter", chapterSchema);
 
 module.exports = Chapter;
