@@ -1,23 +1,22 @@
-require('dotenv').config();
-const createError = require('http-errors');
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const mongoose = require('mongoose');
-const session = require('express-session');
-const passport = require('passport');
-const flash = require('connect-flash');
+require("dotenv").config();
+const createError = require("http-errors");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const mongoose = require("mongoose");
+const session = require("express-session");
+const passport = require("passport");
+const flash = require("connect-flash");
 
-
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 
 // const passport = require('passport');
 // const session = require('express-session');
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const { authLogin, logged } = require('./middlewares/auth.mdw');
+const indexRouter = require("./routes/index");
+const usersRouter = require("./routes/users");
+const { authLogin, logged } = require("./middlewares/auth.mdw");
 
 const app = express();
 
@@ -39,24 +38,28 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true}));
+app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "uploads")));
+app.use(
+  session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-const hbs = require('hbs');
-require('./config/hbsHelper')(hbs);
+const hbs = require("hbs");
+require("./config/hbsHelper")(hbs);
 
-require('./config/passport')();
+require("./config/passport")();
 // app.use('/users', express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(logged)
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use(logged);
+app.use("/", indexRouter);
+app.use("/users", usersRouter);
 app.use("/chapters", require("./routes/chapter.route"));
+app.use("/photos", require("./routes/image.route"));
 // require("./middlewares/routes.mdw")(app);
 
 // catch 404 and forward to error handler

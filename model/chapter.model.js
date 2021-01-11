@@ -10,6 +10,7 @@ const chapterSchema = mongoose.Schema(
     },
     // Thuộc về match nào
     series: { type: Schema.Types.ObjectId, ref: "series" },
+    // series: { type: String },
     postDate: {
       type: Date,
     },
@@ -26,6 +27,6 @@ const chapterSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-const Chapter = mongoose.model("chapter", chatSchema);
+const Chapter = mongoose.model("chapter", chapterSchema);
 
 module.exports = Chapter;

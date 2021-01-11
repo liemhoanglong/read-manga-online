@@ -3366,3 +3366,18 @@ a:hover {
 .series-box-img {
     text-align: center;
 }
+
+article {
+    width: 80%;
+    margin: auto;
+    margin-top: 10px;
+}
+
+article>input#files {
+    display: none;
+}
+
+.thumbnail {
+    height: 100px;
+    margin: 10px;
+}
