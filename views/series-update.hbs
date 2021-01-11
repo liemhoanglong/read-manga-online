@@ -10,8 +10,8 @@
             </div>
         </div>
         <div class="col-sm-9 user-container">
-            <h1 class="title">Đăng truyện</h1>
-            <form action="/users/series-posting" method="POST">
+            <h1 class="title">Chỉnh sửa truyện</h1>
+            <form action="/users/series-update" method="POST">
                 <div class="row">
                     <label for="thumbnail" class="col-sm-2 col-form-label"><i class="fa fa-link"></i> Link ảnh bìa</label>
                     <div class="col-sm-10">
@@ -50,8 +50,50 @@
                 <div class="row">
                     <textarea class="form-control" name="summary" id="summary"></textarea>
                 </div>
+                <div class="row">
+                    <label for="summary" class="col-form-label"><i class="fa fa-list"></i> Danh sách chương</label>
+                </div>
+                <div class="row">
+                    <a href="/chapters/create" class="btn btn-secondary"><i class="fa fa-plus"></i> Đăng chương truyện</a>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        Tên chapter
+                    </div>
+                    <div class="col-sm-2">
+                        Tình trạng
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="/chapters/edit" class="btn btn-secondary"><i class="fa fa-edit"></i></a>
+                        <a href="#" class="btn btn-secondary"><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        Tên chapter
+                    </div>
+                    <div class="col-sm-2">
+                        Tình trạng
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="/chapters/edit" class="btn btn-secondary"><i class="fa fa-edit"></i></a>
+                        <a href="#" class="btn btn-secondary"><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        Tên chapter
+                    </div>
+                    <div class="col-sm-2">
+                        Tình trạng
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="/chapters/edit" class="btn btn-secondary"><i class="fa fa-edit"></i></a>
+                        <a href="#" class="btn btn-secondary"><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
                 <div class="row submit-button">
-                    <button type="submit" class="btn btn-secondary">Đăng truyện</button>
+                    <button type="submit" class="btn btn-secondary">Lưu truyện</button>
                 </div>
             </form>
         </div>
