@@ -10,6 +10,10 @@ module.exports = {
     const targetPath = path.join(__dirname, `../uploads/image${uuidv4}.png`);
     console.log(req.body);
     let images = [];
+    if (req.body && req.body.images) {
+      const curImages = req.body.images;
+      Object.keys(curImages).forEach((key) => images.push(curImages[key]));
+    }
     if (req && req.files && req.files.length > 0) {
       const files = req.files;
       files.forEach((file) => {

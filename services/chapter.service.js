@@ -16,7 +16,8 @@ module.exports = {
   },
   update: async (data) => {
     console.log(1, `chapter`, data);
-    // const filter = { _id: chapterId };
+    const chapterId = data._id;
+    const filter = { _id: chapterId };
     const updateData = { ...data };
     const chapter = Chapter.findOneAndUpdate(
       filter,

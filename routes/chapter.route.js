@@ -8,13 +8,18 @@ const upload = multer({
 });
 router.get("/:id/detail", ChapterController.getByChapterId);
 router.get("/create", ChapterController.vwCreate);
-router.get("/edit", ChapterController.vwUpdate);
+router.get("/:id/edit", ChapterController.vwUpdate);
 router.post(
   "/create",
   upload.array("photos", 12),
   uploadImage,
   ChapterController.create
 );
-router.put("/update/:id", ChapterController.update);
+router.post(
+  "/update",
+  upload.array("photos", 12),
+  uploadImage,
+  ChapterController.update
+);
 
 module.exports = router;
