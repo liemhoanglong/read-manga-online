@@ -10,6 +10,7 @@ const chapterSchema = mongoose.Schema(
     },
     // Thuộc về match nào
     series: { type: Schema.Types.ObjectId, ref: "series" },
+    // series: { type: String },
     postDate: {
       type: Date,
     },

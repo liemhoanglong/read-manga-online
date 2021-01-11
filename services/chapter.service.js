@@ -2,9 +2,12 @@ const Chapter = require("../model/chapter.model");
 
 module.exports = {
   getById: async (id) => {
-    let res = await series.findById(id);
-    console.log(res);
-    return res;
+    try {
+      const chapter = await Chapter.findById(id);
+      return chapter;
+    } catch (err) {
+      return err;
+    }
   },
   create: async (data) => {
     console.log(1, `chapter`, data);
