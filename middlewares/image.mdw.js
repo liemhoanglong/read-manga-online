@@ -38,7 +38,7 @@ module.exports = {
       name: req.body.name,
       series: "5fe9afe0a747eb902440ef02",
       postDate: new Date(),
-      status: "PENDING",
+      status: -1,
       imageList: images,
     };
     req.body = Object.assign({}, req.body, body);
