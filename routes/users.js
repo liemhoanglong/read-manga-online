@@ -2,8 +2,11 @@ const express = require("express");
 const router = express.Router();
 
 const passport = require("passport");
+const usersController = require("../controllers/users.controller.js");
 const UserController = require("../controllers/users.controller.js");
 const { authNotLogin, authLogin } = require("../middlewares/auth.mdw.js");
+
+const seriesController = require('../controllers/series.controller.js');
 
 /* GET users listing. */
 router.get("/",authLogin, function (req, res, next) {
@@ -30,31 +33,14 @@ router.get("/profile",authLogin , UserController.getUserProfile );
 
 
 // GET series posting
-router.get('/series-posting', (req, res) => {
-  res.render('series-posting');
-});
-
+router.get('/series-posting', seriesController.loadSeriesPosting);
 // POST series posting
-router.post('/series-posting', (req, res) => {
-
-  console.log(req.body);
-
-  res.redirect('/users/series-posting');
-});
-
+router.post('/series-posting', seriesController.postSeries);
 // GET series posted
-router.get('/series-posted', (req, res) => {
-  res.render('series-posted');
-});
-
+router.get('/series-posted', seriesController.loadSeriesPosted);
 // GET series following
-router.get('/series-following', (req, res) => {
-  res.render('series-following');
-})
-
+router.get('/series-following', seriesController.loadSeriesFollowing)
 // GET series update
-router.get('/series-update', (req, res) => {
-  res.render('series-update');
-})
+router.get('/series-update', seriesController.loadSeriesUpdate)
 
 module.exports = router;
