@@ -23,10 +23,11 @@ module.exports = {
           __dirname,
           `../uploads/image${filename}.png`
         );
-        const image = {
-          name: filename,
-          url: `/image${filename}.png`,
-        };
+        // const image = {
+        //   name: filename,
+        //   url: `/image${filename}.png`,
+        // };
+        const image = `/image${filename}.png`;
         images.push(image);
         fs.rename(tempPath, targetPath, (err) => {
           if (err) return handleError(err, res);

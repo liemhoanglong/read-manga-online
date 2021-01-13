@@ -27,8 +27,8 @@
                         <h4 for="name">Tên chương: </h4>
                     </div>
                     <div class="col-sm-12 col-md-8 py-3 d-flex flex-row align-items-center">
-                        <input id="name" class="form-control rounded" type="text" name="name" value={{chapter.name}}
-                            placeholder="Nhập tên chương truyện" required>
+                        <input id="name" class="form-control rounded" type="text" name="name" value="{{chapter.name}}"
+                            placeholder=" Nhập tên chương truyện" required>
                     </div>
                 </div>
                 <div class="row">
@@ -46,11 +46,16 @@
                     <input style="display:none" type="text" name="_id" value={{chapter._id}}>
                     <article>
                         <input id="files" name="photos" type="file" accept="image/*" multiple />
+                        {{#ifUnd images}}
+                        <p>No Images</p>
+                        {{else}}
                         {{#each images}}
-                        <input style="display:none" type="text" name="images[{{@index}}][url]" value={{this.url}}>
-                        <input style="display:none" type="text" name="images[{{@index}}][name]" value={{this.name}}>
-                        <img class='thumbnail' src={{this.url}} title={{this.url}} />
+                        <input style="display:none" type="text" name="images[{{@index}}]" value={{this}}>
+                        {{!-- <input style="display:none" type="text" name="images[{{@index}}][name]"
+                            value={{this.name}}> --}}
+                        <img class='thumbnail' src={{this}} title={{this}} />
                         {{/each}}
+                        {{/ifUnd}}
                         <output id="result" />
                     </article>
 
