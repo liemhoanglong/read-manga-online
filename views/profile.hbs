@@ -24,56 +24,80 @@
             <div class="col-sm-8 col-lg-9 mtb_20">
                 <!-- contact  -->
                 <div class="row">
-                    <div class="col-md-6 col-md-offset-3">
-                        <div class="panel-login panel">
-                            <div class="panel-heading">
-                                <div class="row mb_20">
-                                    <div class="col-xs-6">
-                                        <a href="#" class="active">Thông tin tài khoản</a>
-                                    </div>
-                                </div>
-                                <hr>
-                            </div>
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <form id="" action="/members/profile" method="post">
-                                            <div class="row">
-                                                <img src="{{user.avatar}}" alt="avatar">
-
-                                                <div class="form-group">
-                                                    <span> Tên người dùng</span>
-                                                    <input type="text" name="fullName" id="fullName" tabindex="2"
-                                                        class="form-control" placeholder="Full Name"
-                                                        value="{{user.fullName}}">
-                                                </div>
-                                                <div class="form-group">
-                                                    <span> Email</span>
-                                                    <input type="text" name="email" id="email" tabindex="1"
-                                                        class="form-control" placeholder="Email" disabled
-                                                        value="{{user.email}}">
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <div class="col-sm-6 col-sm-offset-3">
-                                                            <input type="submit" name="login_submit" id="login-submit"
-                                                                tabindex="4" class="form-control btn btn-login"
-                                                                value="Cập nhật tài khoản" disabled>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="panel-login panel">
+                        <div class="row d-flex justify-content-center">
+                            <h2>Thông tin tài khoản</h2>
                         </div>
+                        <div class="row" id="penel-show">
+                            <div class="col-5">
+                                {{#ifUnd user.avatar}}
+                                <div>Bạn chưa có hình đại diện</div>
+                                {{else}}
+                                <img src="{{user.avatar}}" alt="avatar">
+                                {{/ifUnd}}
+                            </div>
+                            <div class="col-9">
+                                <div>Tên người dùng: <span><b>{{user.fullName}}</b></span></div>
+                                <div>Email: <span><b>{{user.email}}</b></span></div>
+                                <button class="btn btn-default btn-lg" id="toggle">Cập nhật</button>
+                            </div>
+
+                        </div>
+                        <div class="row d-flex justify-content-center" id="penel-update"
+                            style="display: none !important;">
+                            <div class="col-10">
+                                <form id="" action="/members/profile" method="post">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <span> Avatar</span>
+                                            <input type="text" name="avatar" tabindex="2" class="form-control"
+                                                placeholder="avatar" value="{{user.avatar}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <span> Tên người dùng</span>
+                                            <input type="text" name="fullName" id="fullName" tabindex="2"
+                                                class="form-control" placeholder="Full Name" value="{{user.fullName}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <span>Email</span>
+                                            <input type="text" name="email" id="email" tabindex="2"
+                                                class="form-control" placeholder="email" value="{{user.email}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-6 col-sm-offset-3">
+                                                    <input type="submit" name="login_submit" id="login-submit"
+                                                        tabindex="4" class="form-control btn btn-login"
+                                                        value="Cập nhật tài khoản">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+
+                        </div>
+
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
+    <script>
+        window.onload = function () {
+            document.getElementById("toggle").onclick = function () {
+                var style = document.getElementById("penel-update").style.display;
+                if (String(style) == "none") {
+                    document.getElementById("penel-update").style.display= "";
+                }
+                else {
+                    document.getElementById("penel-update").setAttribute("style", "display: none !important");
+                }
+
+            }
+
+        }
+
+    </script>
 </div>

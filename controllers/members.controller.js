@@ -46,5 +46,12 @@ module.exports = {
             req.flash('error', 'Mật khẩu nhập lại không đúng');
             res.redirect('/members/register');
         }
+    },
+    updateMemberProfile:async (req, res, next)=>{
+        const newData = req.body;
+        console.log("in");
+        const status = await MemberService.update(newData);
+        const url = req.originalUrl;
+        res.redirect(url);
     }
 }
