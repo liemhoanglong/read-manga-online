@@ -49,7 +49,7 @@ module.exports = {
         }
     },
 
-    // Nguyen Manh Linh's works
+    // Begin of Nguyen Manh Linh's works ===========================================================================
     loadSeriesFollowing: async (req, res) => {
         const member = req.user;
 
@@ -66,5 +66,14 @@ module.exports = {
         const allGenres = await GenreService.getAllGenres();
 
         res.render('series-posting', { allGenres: allGenres });
+    },
+    // End of Nguyen Manh Linh's works ============================================================================
+
+    updateMemberProfile:async (req, res, next)=>{
+        const newData = req.body;
+        console.log("in");
+        const status = await MemberService.update(newData);
+        const url = req.originalUrl;
+        res.redirect(url);
     }
 }

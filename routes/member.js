@@ -13,7 +13,6 @@ router.get("/",authLogin, function (req, res, next) {
 });
 
 router.get("/login",authNotLogin, memberController.getLoginPage);
-
 router.post(
   "/login",
   passport.authenticate("local", {
@@ -22,12 +21,11 @@ router.post(
     failureFlash: true
   })
 );
-router.get("/logout",authLogin , memberController.logout)
+router.get("/logout",authLogin , memberController.logout);
 router.get("/register",authNotLogin, memberController.getRegisterPage);
-
 router.post("/register",authNotLogin, memberController.createNewMember);
-
-router.get("/profile",authLogin , memberController.getMemberProfile );
+router.post("/profile",authLogin , memberController.updateMemberProfile);
+router.get("/profile",authLogin , memberController.getMemberProfile);
 
 
 
@@ -40,6 +38,6 @@ router.get('/series-posted', seriesController.loadSeriesPosted);
 // GET series following
 router.get('/series-following', authLogin, memberController.loadSeriesFollowing);
 // GET series update
-router.get('/series-update', seriesController.loadSeriesUpdate)
+router.get('/series-update', seriesController.loadSeriesUpdate);
 
 module.exports = router;
