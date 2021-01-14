@@ -26,6 +26,7 @@ router.get("/register",authNotLogin, UserController.getRegisterPage);
 router.post("/register",authNotLogin, UserController.createNewMember);
 
 router.get("/profile",authLogin , UserController.getMemberProfile );
+router.post("/profile",authLogin , UserController.updateMemberProfile );
 
 // GET series posting
 router.get('/series-posting', (req, res) => {
