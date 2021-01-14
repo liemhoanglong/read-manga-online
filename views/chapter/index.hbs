@@ -1,6 +1,6 @@
 <!-- =====  CONTAINER START  ===== -->
 <div class="container">
-    <h1>{{title}}</h1>
+    <h1 class="mt-4">Chapter: <span style="font-weight: 600;">{{chapter.name}}</span> </h1>
     <nav aria-label="Page navigation example" style="display: flex;justify-content: center;">
         <ul class="pagination">
             <li class="page-item disabled">
@@ -15,21 +15,20 @@
         </ul>
     </nav>
     <div class="row">
-        {{#each chapter}}
-
+        {{#each images}}
         <div class="chapter-layout chapter-grid col-sm-12 ">
             <div class="item">
                 <div class="chapter-thumb clearfix mb_30">
                     <div class="image chapter-imageblock">
-                        <img data-name="chapter_image" src={{this.src}} alt="iPod Classic" title={{this._id}}
+                        {{!-- <img data-name="chapter_image" src="/image2db075968276fca03380f072dc167dd4.png"
+                            alt="iPod Classic" class="img-responsive" /> --}}
+                        <img data-name="chapter_image" src={{this}} alt={{this}} title={{this}}
                             class="img-responsive" />
                     </div>
-
                 </div>
             </div>
         </div>
         {{/each}}
-
     </div>
     <nav aria-label="Page navigation example" style="display: flex;justify-content: center;">
         <ul class="pagination">
