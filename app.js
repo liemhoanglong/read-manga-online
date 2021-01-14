@@ -15,7 +15,7 @@ const bodyParser = require("body-parser");
 // const session = require('express-session');
 
 const indexRouter = require("./routes/index");
-const usersRouter = require("./routes/users");
+const membersRouter = require("./routes/member");
 const { authLogin, logged } = require("./middlewares/auth.mdw");
 
 const app = express();
@@ -57,7 +57,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(logged);
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
+app.use("/members", membersRouter);
 app.use("/chapters", require("./routes/chapter.route"));
 app.use("/photos", require("./routes/image.route"));
 // require("./middlewares/routes.mdw")(app);

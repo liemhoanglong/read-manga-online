@@ -8,7 +8,7 @@ module.exports = {
         }
         console.log("what");
         req.flash('error_msg', 'Please log in');
-        res.redirect('/users/login');
+        res.redirect('/members/login');
     },
     authNotLogin: (req, res, next)=>{
         if(!req.isAuthenticated()){

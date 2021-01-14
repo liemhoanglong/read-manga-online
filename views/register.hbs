@@ -26,27 +26,20 @@
                       value="" required>
                   </div>
                   <div class="form-group">
+                    <span id="password-message"></span>
                     <input type="password" name="password" id="password" tabindex="2" class="form-control"
-                      placeholder="Mật khẩu" required>
+                      placeholder="Mật khẩu" required oninput="validPassword()">
                   </div>
                   <div class="form-group">
-                    <input type="password" name="retype_password" id="retype-password" tabindex="2" class="form-control"
-                      placeholder="Nhập lại mật khẩu" required>
+                    <span id="retype-password-message"></span>
+                    <input type="password" name="retype_password" id="retype_password" tabindex="2" class="form-control"
+                      placeholder="Nhập lại mật khẩu" required oninput="validRetype()">
                   </div>
                   <div class="form-group">
                     <div class="row">
                       <div class="col-sm-6 col-sm-offset-3">
                         <input type="submit" name="login_submit" id="login-submit" tabindex="4"
-                          class="form-control btn btn-login" value="Log In">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="row">
-                      <div class="col-lg-12">
-                        <div class="text-center">
-                          <a href="#" tabindex="5" class="forgot-password">Forgot Password?</a>
-                        </div>
+                          class="form-control btn btn-login" value="Register">
                       </div>
                     </div>
                   </div>
@@ -58,4 +51,30 @@
       </div>
     </div>
   </div>
+  <script>
+    function validPassword() {
+      console.log("ok")
+      const password = String(document.getElementById('password').value);
+      const message = document.getElementById('password-message');
+      if (password.length <= 6) {
+        message.style.display = "block";
+        message.innerText = "Password must be over 6 characters";
+      } else {
+        message.style.display = "none";
+      }
+    }
+    function validRetype() {
+      console.log("ok")
+      const re_password = String(document.getElementById('retype_password').value);
+      const password = String(document.getElementById('password').value)
+      const message = document.getElementById('retype-password-message');
+      if (re_password !== password) {
+        message.style.display = "block";
+        message.innerText = "retype password do not match";
+      } else {
+        message.style.display = "none";
+      }
+    }
+
+  </script>
 </div>

@@ -10,7 +10,7 @@ var seriesSchema = new mongoose.Schema({
 //	imgDir: [String],
 //	count: Number,
 //	countView: Number,
-}, { collection: 'series' });
+}, { collection: 'Series' });
 //tạo model
 
-module.exports = mongoose.model("series", seriesSchema);
+module.exports = mongoose.model("Series", seriesSchema);

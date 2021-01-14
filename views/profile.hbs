@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm-3">
             <div class="list-group user-sidebar">
-                <a href="/users/profile"  class="list-group-item list-group-item-action active" aria-current="true">
+                <a href="/users/profile" class="list-group-item list-group-item-action active" aria-current="true">
                     Thông tin tài khoản
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">Đang theo dõi</a>
@@ -37,28 +37,34 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <form id="" action="/users/profile" method="post">
-                                            <div class="form-group">
-                                                <span> Tên người dùng</span>
-                                                <input type="text" name="fullName" id="fullName" tabindex="2"
-                                                    class="form-control" placeholder="Full Name"
-                                                    value="{{user.fullName}}">
-                                            </div>
-                                            <div class="form-group">
-                                                <span> Email</span>
-                                                <input type="text" name="email" id="email" tabindex="1"
-                                                    class="form-control" placeholder="Email" disabled
-                                                    value="{{user.email}}">
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-sm-6 col-sm-offset-3">
-                                                        <input type="submit" name="login_submit" id="login-submit"
-                                                            tabindex="4" class="form-control btn btn-login"
-                                                            value="Cập nhật tài khoản" disabled>
+                                        <form id="" action="/members/profile" method="post">
+                                            <div class="row">
+                                                <img src="{{user.avatar}}" alt="avatar">
+
+                                                <div class="form-group">
+                                                    <span> Tên người dùng</span>
+                                                    <input type="text" name="fullName" id="fullName" tabindex="2"
+                                                        class="form-control" placeholder="Full Name"
+                                                        value="{{user.fullName}}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <span> Email</span>
+                                                    <input type="text" name="email" id="email" tabindex="1"
+                                                        class="form-control" placeholder="Email" disabled
+                                                        value="{{user.email}}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-6 col-sm-offset-3">
+                                                            <input type="submit" name="login_submit" id="login-submit"
+                                                                tabindex="4" class="form-control btn btn-login"
+                                                                value="Cập nhật tài khoản" disabled>
+                                                        </div>
                                                     </div>
                                                 </div>
+
                                             </div>
+
                                         </form>
                                     </div>
                                 </div>
