@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const passport = require("passport");
-const UserController = require("../controllers/users.controller.js");
+const UserController = require("../controllers/members.controller.js");
 const { authNotLogin, authLogin } = require("../middlewares/auth.mdw.js");
 
 /* GET users listing. */
@@ -15,7 +15,7 @@ router.get("/login",authNotLogin, UserController.getLoginPage);
 router.post(
   "/login",
   passport.authenticate("local", {
-    failureRedirect: "/users/login",
+    failureRedirect: "/members/login",
     successRedirect: "/",
     failureFlash: true
   })
@@ -23,9 +23,9 @@ router.post(
 router.get("/logout",authLogin , UserController.logout)
 router.get("/register",authNotLogin, UserController.getRegisterPage);
 
-router.post("/register",authNotLogin, UserController.createNewUser);
+router.post("/register",authNotLogin, UserController.createNewMember);
 
-router.get("/profile",authLogin , UserController.getUserProfile );
+router.get("/profile",authLogin , UserController.getMemberProfile );
 
 // GET series posting
 router.get('/series-posting', (req, res) => {
@@ -37,7 +37,7 @@ router.post('/series-posting', (req, res) => {
 
   console.log(req.body);
 
-  res.redirect('/users/series-posting');
+  res.redirect('/members/series-posting');
 });
 
 // GET series posted
