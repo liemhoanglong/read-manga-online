@@ -1,16 +1,16 @@
 var mongoose = require('mongoose');
 
-// tạo Schema
-var seriesSchema = new mongoose.Schema({
-	name: String,
-//	author: String,
-//	genreID: [String],
-//	info: String,
-//	img: [String],
-//	imgDir: [String],
-//	count: Number,
-//	countView: Number,
-}, { collection: 'Series' });
-//tạo model
+const seriesSchema = mongoose.Schema(
+    {
+        name: String,
+        author: String,
+        postedDate: Date,
+        postedBy: mongoose.Schema.Types.ObjectId,
+        genreList: [mongoose.Schema.Types.ObjectId],
+        status: Number,
+        summary: String,
+        thumbnail: String
+    }
+);
 
-module.exports = mongoose.model("Series", seriesSchema);
+module.exports = mongoose.model('Series', seriesSchema, 'Series');

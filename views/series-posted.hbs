@@ -1,13 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-3">
-            <div class="list-group user-sidebar">
-                <a href="/users/profile" class="list-group-item list-group-item-action" aria-current="true">
-                    Thông tin tài khoản
-                </a>
-                <a href="/users/series-following" class="list-group-item list-group-item-action">Đang theo dõi</a>
-                <a href="users/series-posted" class="list-group-item list-group-item-action active">Truyện đã đăng</a>
-            </div>
+            {{> memberSidebar}}
         </div>
         <div class="col-sm-9 user-container">
             <h1 class="title">Truyện đã đăng</h1>

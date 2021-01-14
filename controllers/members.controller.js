@@ -1,5 +1,6 @@
 const MemberService = require('../services/member.services');
-
+const SeriesService = require('../services/series.services');
+const GenreService = require('../services/genre.service');
 
 module.exports = {
     getMemberProfile: (req, res, next)=>{
@@ -46,5 +47,24 @@ module.exports = {
             req.flash('error', 'Mật khẩu nhập lại không đúng');
             res.redirect('/members/register');
         }
+    },
+
+    // Nguyen Manh Linh's works
+    loadSeriesFollowing: async (req, res) => {
+        const member = req.user;
+
+        var seriesFollowing = [];
+        for (const seriesID of member.favoriteSeries)
+        {
+            seriesFollowing.push(await SeriesService.getSeries(seriesID));
+        }
+        console.log(seriesFollowing);
+
+        res.render('series-following', { seriesFollowing: seriesFollowing });
+    },
+    loadSeriesPosting: async (req, res) => {
+        const allGenres = await GenreService.getAllGenres();
+
+        res.render('series-posting', { allGenres: allGenres });
     }
 }
