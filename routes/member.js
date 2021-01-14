@@ -2,8 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const passport = require("passport");
-const usersController = require("../controllers/users.controller.js");
-const UserController = require("../controllers/users.controller.js");
+const UserController = require("../controllers/members.controller.js");
 const { authNotLogin, authLogin } = require("../middlewares/auth.mdw.js");
 
 const seriesController = require('../controllers/series.controller.js');
@@ -18,7 +17,7 @@ router.get("/login",authNotLogin, UserController.getLoginPage);
 router.post(
   "/login",
   passport.authenticate("local", {
-    failureRedirect: "/users/login",
+    failureRedirect: "/members/login",
     successRedirect: "/",
     failureFlash: true
   })
@@ -26,9 +25,9 @@ router.post(
 router.get("/logout",authLogin , UserController.logout)
 router.get("/register",authNotLogin, UserController.getRegisterPage);
 
-router.post("/register",authNotLogin, UserController.createNewUser);
+router.post("/register",authNotLogin, UserController.createNewMember);
 
-router.get("/profile",authLogin , UserController.getUserProfile );
+router.get("/profile",authLogin , UserController.getMemberProfile );
 
 
 

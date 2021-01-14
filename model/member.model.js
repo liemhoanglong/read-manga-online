@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 // tạo Schema
-var userSchema = new mongoose.Schema({
+var memberSchema = new mongoose.Schema({
     fullName: String,
     email: {
         type: String,
@@ -21,10 +21,11 @@ var userSchema = new mongoose.Schema({
     },
     favoriteSeries: [{
         type: mongoose.Types.ObjectId,
-        ref: "series"
-    }]
+        ref: "Series"
+    }],
+    avatar: String
 
 });
 //tạo model
 
-module.exports = mongoose.model("user", userSchema);
+module.exports = mongoose.model("Member", memberSchema, "Member");

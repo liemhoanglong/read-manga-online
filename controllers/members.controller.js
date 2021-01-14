@@ -1,8 +1,8 @@
-const UserService = require('../services/user.services');
+const MemberService = require('../services/member.services');
 
 
 module.exports = {
-    getUserProfile: (req, res, next)=>{
+    getMemberProfile: (req, res, next)=>{
         res.render('profile');
     },
     getLoginPage: (req, res, next)=>{
@@ -25,7 +25,7 @@ module.exports = {
         console.log("error", message.error);
         res.render('register', {error: message.error});
     },
-    createNewUser:async (req, res, next)=>{
+    createNewMember:async (req, res, next)=>{
         const rawUser = req.body;
         console.log(rawUser);
         if(rawUser.password === rawUser.retype_password){
@@ -34,17 +34,17 @@ module.exports = {
             userData.password = rawUser.password;
             userData.fullName = rawUser.fullName;
             console.log("userData",userData);
-            const userRes = await UserService.createNewUser(userData);
+            const userRes = await MemberService.createNewMember(userData);
             console.log("userRes", userRes);
             if(userRes){
-                res.send(`Đã đăng ký thành công<br>Vui lòng <a href='/users/login'>Đăng nhập</a>`);
+                res.redirect("/members/login");
             }
             else{
                 res.send("something when wrong!");
             }
         }else{
             req.flash('error', 'Mật khẩu nhập lại không đúng');
-            res.redirect('/users/register');
+            res.redirect('/members/register');
         }
     }
 }
