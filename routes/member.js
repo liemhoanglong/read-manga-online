@@ -37,5 +37,7 @@ router.get('/series-posted', authLogin, memberController.loadSeriesPosted);
 router.get('/series-following', authLogin, memberController.loadSeriesFollowing);
 // GET series update
 router.get('/series-update/:id', authLogin, memberController.loadUpdateSeries);
+// POST series update
+router.post('/series-update/:id', memberController.updateSeries);
 
 module.exports = router;

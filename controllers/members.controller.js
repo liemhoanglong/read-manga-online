@@ -99,6 +99,22 @@ module.exports = {
         const allGenres = await GenreService.getAllGenres();
 
         res.render('series-update', { series: series, allGenres: allGenres });
+    },
+    updateSeries: async (req, res) => {
+        console.log(req.body);
+
+        const body = req.body;
+
+        await SeriesService.updateSeries(
+            req.params.id,
+            body.name,
+            body.author,
+            [body.genre],
+            body.summary,
+            body.thumbnail
+        );
+
+        res.redirect('/members/series-posted');
     }
     // End of Nguyen Manh Linh's works ============================================================================
 }
