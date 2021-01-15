@@ -3,13 +3,16 @@ var mongoose = require('mongoose');
 // tạo Schema
 var seriesSchema = new mongoose.Schema({
 	name: String,
-//	author: String,
-//	genreID: [String],
-//	info: String,
-//	img: [String],
-//	imgDir: [String],
-//	count: Number,
-//	countView: Number,
+	author: String,
+	postedDate: Date,
+	postedBy: mongoose.Schema.Types.ObjectId,
+	genreList: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: "Genre"
+	}],
+	status: Number,
+	summary: String,
+	thumbnail: String
 }, { collection: 'Series' });
 //tạo model
 

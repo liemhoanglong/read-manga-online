@@ -8,6 +8,8 @@ const controllerSeries =require('../controllers/series.controller');
 //   res.render('index', { title: 'Express' });
 // });
 router.get('/', controllerSeries.showSeries);
-router.get('/series', controllerSeries.showSeriesDetail);
+router.get('/series/:id', controllerSeries.showSeriesDetail);
+router.get('/search', controllerSeries.searchSeries);
+router.get('/genre/:id', controllerSeries.genreSeries);
 
 module.exports = router;

@@ -1,26 +1,9 @@
 // const passport = require('passport');
 // const bcrypt = require('bcryptjs');
 
-const seriesServices = require('../services/series.services');
-const handlebars= require('hbs');
-
-handlebars.registerHelper("when",function(operand_1, operator, operand_2, options) {
-  var operators = {
-	  'eq': (l,r) => l == r,              							 //  {{/when}}
-	  'noteq': (l,r) => l != r,
-	  'gt': (l,r) => (+l) > (+r),                        // {{#when var1 'eq' var2}}
-	  'gteq': (l,r) => ((+l) > (+r)) || (l == r),        //               eq
-	  'lt': (l,r) => (+l) < (+r),                        // {{else when var1 'gt' var2}}
-	  'lteq': (l,r) => ((+l) < (+r)) || (l == r),        //               gt
-	  'or': (l,r) => l || r,                             // {{else}}
-	  'and': (l,r) => l && r,                            //               lt
-	  '%': (l,r) => (l % r) === 0                        // {{/when}}
-  }
-  , result = operators[operator](operand_1,operand_2);
-
-  if (result) return options.fn(this);
-  else  return options.inverse(this);
-});
+const seriesServices = require('../services/series.service');
+const genreServices = require('../services/genre.service');
+const chapterServices = require('../services/chapter.service');
 
 module.exports.showSeries = async (req, res, next) => {
 	const limit = 8;
@@ -38,7 +21,7 @@ module.exports.showSeries = async (req, res, next) => {
 	let startIndex = (page - 1) * limit;  
 	let endIndex = page * limit;
 
-	let series = await(seriesServices.getAllSeries())
+	let series = await(seriesServices.getAllSeries());
 	
 	let total = Math.ceil(series.length/limit);
 	let listpage = []
@@ -49,7 +32,7 @@ module.exports.showSeries = async (req, res, next) => {
 	series = series.slice(startIndex, endIndex);
 
 	res.render('home', {
-		items: series,
+		series,
 		page,
 		prepage,
 		nextpage,
@@ -59,8 +42,34 @@ module.exports.showSeries = async (req, res, next) => {
 };
 
 module.exports.showSeriesDetail = async (req, res, next) => {
-	let series = await(seriesServices.getSeries(req.query.id))
+	let series = await(seriesServices.getSeries(req.params.id));
+	// let genres = await(genreServices.getAll());
+	let chapters = await(chapterServices.getBySeriesID(req.params.id));
+	// console.log(series)
+
 	res.render('series-detail', {
 		series,
+		// genres,
+		chapters,
 	});
 };
+
+module.exports.searchSeries = async (req, res, next) => {
+	console.log(req.query.q)
+	let series = await(seriesServices.getByName(req.query.q));
+
+	res.render('search-series', {
+		series,
+		query: req.query.q,
+	});
+}
+
+module.exports.genreSeries = async (req, res, next) => {
+	console.log(req.params.id)
+	let series = await(seriesServices.getByGenre(req.params.id));
+	
+	res.render('genre-series', {
+		series,
+		genre: series[0].genreList[0].name,
+	});
+}

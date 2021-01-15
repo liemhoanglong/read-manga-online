@@ -2427,6 +2427,7 @@ blockquote {
 .sort-inner,
 .limit {
     float: left;
+    margin-top: 3px;
 }
 
 .list-grid-wrapper,
@@ -2824,7 +2825,7 @@ a.thumbnail.active {
 .footer h6 {
     color: #fff;
     text-transform: uppercase;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .footer-logo {
@@ -3380,4 +3381,8 @@ article>input#files {
 .thumbnail {
     height: 100px;
     margin: 10px;
+}
+
+.img-thumbnail-series{
+    height: 400px;
 }

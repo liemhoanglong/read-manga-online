@@ -1,7 +1,7 @@
 <!-- =====  CONTAINER START  ===== -->
 <div class="container">
   <!-- =====  BANNER STRAT  ===== -->
-  <div class="row banner">
+  {{!-- <div class="row banner">
     <div class="main-banner owl-carousel">
       <div class="item"><a href="#"><img src="https://i.imgur.com/MSZ6Doa.png" alt="Main Banner" class="img-responsive img-banner" /></a>
       </div>
@@ -10,12 +10,15 @@
       <div class="item"><a href="#"><img src="https://i0.wp.com/www.dragonball.co/wp-content/uploads/2017/04/dragon-ball-z-extreme-butoden-banner.jpg?fit=1920%2C700" alt="Main Banner" class="img-responsive img-banner" /></a>
       </div>
     </div>
-  </div>
+  </div> --}}
   <!-- =====  BANNER END  ===== -->
   </ul>
   <div class="row" style="background-color: #2f2e2e">
     <div class="col-sm-12 mt_30">
-      <div class="category-page-wrapper mb_30">
+      <div class="category-page-wrapper mb_30 row">
+        <div class="col-sm-6 sort-wrapper">
+          <label class="control-label">Tìm được: {{series.length}} truyện có từ "{{query}}"</label>
+        </div>
         <div class="sort-wrapper pull-right">
           <label class="control-label" for="input-sort">Sort By :</label>
           <div class="sort-inner">
@@ -40,7 +43,7 @@
             <div class="item">
               <div class="clearfix mb_30">
                 <div class="image product-imageblock"> 
-                  <a href="series/{{this.id}}" > 
+                  <a href="/series/{{this.id}}" > 
                     <img data-name="product_image" src={{{this.thumbnail}}} alt="iPod Classic" title="iPod Classic" class="img-thumbnail-series series-img" /> 
                   </a>
                 </div>
@@ -54,7 +57,7 @@
         {{/each}}
 
       </div>
-      <div class="pagination-nav text-center mt_50">
+      {{!-- <div class="pagination-nav text-center mt_50">
         <ul>
             {{#when page 'gt' 1}}
               <li><a href="/?page=1"></i>&lt&lt</a></li>
@@ -76,7 +79,7 @@
               <li><a href="/?page={{total}}">&gt&gt</i></a></li>
             {{/when}}
         </ul>
-      </div>
+      </div> --}}
       <br/>
     </div>
   </div>
