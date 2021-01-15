@@ -48,6 +48,13 @@ module.exports = {
             res.redirect('/members/register');
         }
     },
+    updateMemberProfile:async (req, res, next)=>{
+        const newData = req.body;
+        console.log("in");
+        const status = await MemberService.update(newData);
+        const url = req.originalUrl;
+        res.redirect(url);
+    },
 
     // Begin of Nguyen Manh Linh's works ===========================================================================
     loadSeriesFollowing: async (req, res) => {
@@ -67,13 +74,31 @@ module.exports = {
 
         res.render('series-posting', { allGenres: allGenres });
     },
-    // End of Nguyen Manh Linh's works ============================================================================
+    postSeries: (req, res) => {
+        console.log(req.body);
 
-    updateMemberProfile:async (req, res, next)=>{
-        const newData = req.body;
-        console.log("in");
-        const status = await MemberService.update(newData);
-        const url = req.originalUrl;
-        res.redirect(url);
+        const body = req.body;
+
+        SeriesService.createSeries(
+            body.name,
+            body.author,
+            req.user._id,
+            [body.genre],
+            body.summary,
+            body.thumbnail
+        );
+
+        res.redirect('/members/series-posted');
+    },
+    loadSeriesPosted: async (req, res) => {
+        const seriesPosted = await SeriesService.getSeriesPostedByMember(req.user._id);
+        res.render('series-posted', { seriesPosted: seriesPosted });
+    },
+    loadUpdateSeries: async (req, res) => {
+        const series  = await SeriesService.getSeries(req.params.id);
+        const allGenres = await GenreService.getAllGenres();
+
+        res.render('series-update', { series: series, allGenres: allGenres });
     }
+    // End of Nguyen Manh Linh's works ============================================================================
 }

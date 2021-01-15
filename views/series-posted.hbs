@@ -6,50 +6,24 @@
         <div class="col-sm-9 user-container">
             <h1 class="title">Truyện đã đăng</h1>
             <div class="row">
-                <a href="/users/series-posting" class="btn btn-secondary"><i class="fa fa-plus"></i> Đăng truyện</a>
+                <a href="/members/series-posting" class="btn btn-secondary"><i class="fa fa-plus"></i> Đăng truyện</a>
             </div>
+            {{#each seriesPosted}}
             <div class="row">
                 <div class="col-sm-2">
-                    <img src="/images/product/product1.jpg" alt="">
+                    <img src="{{this.thumbnail}}" alt="">
                 </div>
                 <div class="col-sm-6">
-                    <h3>Tên truyện</h3>
-                    <p class="series-posted-status">Trạng thái</p>
+                    <h3>{{this.name}}</h3>
+                    <p class="series-posted-status">{{this.status}}</p>
                 </div>
                 <div class="col-sm-4 align-right">
-                    <a href="/users/series-update" class="btn btn-secondary"><i class="fa fa-edit"></i> Chỉnh sửa</a>
+                    <a href="/members/series-update/{{this._id}}" class="btn btn-secondary"><i class="fa fa-edit"></i> Chỉnh sửa</a>
                     <a href="#" class="btn btn-secondary"><i class="fa fa-times"></i> Xóa truyện</a>
                 </div>
             </div>
             <hr>
-            <div class="row">
-                <div class="col-sm-2">
-                    <img src="/images/product/product1.jpg" alt="">
-                </div>
-                <div class="col-sm-6">
-                    <h3>Tên truyện</h3>
-                    <p class="series-posted-status">Trạng thái</p>
-                </div>
-                <div class="col-sm-4 align-right">
-                    <a href="/users/series-update" class="btn btn-secondary"><i class="fa fa-edit"></i> Chỉnh sửa</a>
-                    <a href="#" class="btn btn-secondary"><i class="fa fa-times"></i> Xóa truyện</a>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-sm-2">
-                    <img src="/images/product/product1.jpg" alt="">
-                </div>
-                <div class="col-sm-6">
-                    <h3>Tên truyện</h3>
-                    <p class="series-posted-status">Trạng thái</p>
-                </div>
-                <div class="col-sm-4 align-right">
-                    <a href="/users/series-update" class="btn btn-secondary"><i class="fa fa-edit"></i> Chỉnh sửa</a>
-                    <a href="#" class="btn btn-secondary"><i class="fa fa-times"></i> Xóa truyện</a>
-                </div>
-            </div>
-            <hr>
+            {{/each}}
         </div>
     </div>
 </div>

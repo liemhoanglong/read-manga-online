@@ -64,26 +64,3 @@ module.exports.showSeriesDetail = async (req, res, next) => {
 		series,
 	});
 };
-
-module.exports.loadSeriesPosting = (req, res) => {
-	res.render('series-posting');
-}
-
-module.exports.postSeries = (req, res) => {
-
-	console.log(req.body);
-  
-	res.redirect('/users/series-posting');
-}
-
-module.exports.loadSeriesPosted = (req, res) => {
-	res.render('series-posted');
-}
-
-module.exports.loadSeriesFollowing = (req, res) => {
-	res.render('series-following');
-}
-
-module.exports.loadSeriesUpdate = (req, res) => {
-	res.render('series-update');
-}

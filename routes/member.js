@@ -5,8 +5,6 @@ const passport = require("passport");
 const memberController = require("../controllers/members.controller.js");
 const { authNotLogin, authLogin } = require("../middlewares/auth.mdw.js");
 
-const seriesController = require('../controllers/series.controller.js');
-
 /* GET users listing. */
 router.get("/",authLogin, function (req, res, next) {
   res.send("respond with a resource");
@@ -32,12 +30,12 @@ router.get("/profile",authLogin , memberController.getMemberProfile);
 // GET series posting
 router.get('/series-posting', authLogin, memberController.loadSeriesPosting);
 // POST series posting
-router.post('/series-posting', seriesController.postSeries);
+router.post('/series-posting', memberController.postSeries);
 // GET series posted
-router.get('/series-posted', seriesController.loadSeriesPosted);
+router.get('/series-posted', authLogin, memberController.loadSeriesPosted);
 // GET series following
 router.get('/series-following', authLogin, memberController.loadSeriesFollowing);
 // GET series update
-router.get('/series-update', seriesController.loadSeriesUpdate);
+router.get('/series-update/:id', authLogin, memberController.loadUpdateSeries);
 
 module.exports = router;
