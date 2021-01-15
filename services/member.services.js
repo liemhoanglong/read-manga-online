@@ -19,11 +19,13 @@ module.exports = {
     console.log("newMember", newMember);
     return newMember;
   },
-  update: async (mem) => {
+  update: async (email, mem) => {
     try {
-      await MemberModel.findOneAndUpdate({ email: mem.email }, mem);
+      console.log(mem);
+      await MemberModel.findOneAndUpdate({ email: email }, mem);
       return true;
     } catch (error) {
+      console.log(error);
       return false;
     }
   },

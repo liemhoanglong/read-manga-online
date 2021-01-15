@@ -25,7 +25,7 @@ module.exports = function () {
             return done(null, false, { message: "Incorrect password." });
           }
         }
-        return done(null, false, { message: "Incorrect membername." });
+        return done(null, false, { message: "Incorrect username." });
       }
     )
   );
