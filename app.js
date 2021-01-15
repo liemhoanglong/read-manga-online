@@ -49,6 +49,7 @@ app.use(flash());
 
 const hbs = require("hbs");
 require("./config/hbsHelper")(hbs);
+hbs.registerPartials(__dirname + '/views/partials');
 
 require("./config/passport")();
 // app.use('/users', express.static(path.join(__dirname, 'public')));

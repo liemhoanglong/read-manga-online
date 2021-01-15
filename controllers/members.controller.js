@@ -1,5 +1,6 @@
 const MemberService = require('../services/member.services');
-
+const SeriesService = require('../services/series.services');
+const GenreService = require('../services/genre.service');
 
 module.exports = {
     getMemberProfile: (req, res, next)=>{
@@ -53,5 +54,51 @@ module.exports = {
         const status = await MemberService.update(newData);
         const url = req.originalUrl;
         res.redirect(url);
+    },
+
+    // Begin of Nguyen Manh Linh's works ===========================================================================
+    loadSeriesFollowing: async (req, res) => {
+        const member = req.user;
+
+        var seriesFollowing = [];
+        for (const seriesID of member.favoriteSeries)
+        {
+            seriesFollowing.push(await SeriesService.getSeries(seriesID));
+        }
+        console.log(seriesFollowing);
+
+        res.render('series-following', { seriesFollowing: seriesFollowing });
+    },
+    loadSeriesPosting: async (req, res) => {
+        const allGenres = await GenreService.getAllGenres();
+
+        res.render('series-posting', { allGenres: allGenres });
+    },
+    postSeries: (req, res) => {
+        console.log(req.body);
+
+        const body = req.body;
+
+        SeriesService.createSeries(
+            body.name,
+            body.author,
+            req.user._id,
+            [body.genre],
+            body.summary,
+            body.thumbnail
+        );
+
+        res.redirect('/members/series-posted');
+    },
+    loadSeriesPosted: async (req, res) => {
+        const seriesPosted = await SeriesService.getSeriesPostedByMember(req.user._id);
+        res.render('series-posted', { seriesPosted: seriesPosted });
+    },
+    loadUpdateSeries: async (req, res) => {
+        const series  = await SeriesService.getSeries(req.params.id);
+        const allGenres = await GenreService.getAllGenres();
+
+        res.render('series-update', { series: series, allGenres: allGenres });
     }
+    // End of Nguyen Manh Linh's works ============================================================================
 }
