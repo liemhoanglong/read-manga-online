@@ -21,7 +21,7 @@ module.exports = function (hbs) {
   });
 
   hbs.registerHelper("when",function(operand_1, operator, operand_2, options) {
-    var operators = {
+    const operators = {
       'eq': (l,r) => l == r,              							 //  {{/when}}
       'noteq': (l,r) => l != r,
       'gt': (l,r) => (+l) > (+r),                        // {{#when var1 'eq' var2}}
@@ -36,6 +36,12 @@ module.exports = function (hbs) {
   
     if (result) return options.fn(this);
     else  return options.inverse(this);
+  });
+
+  hbs.registerHelper('sliceString', function(title, start, end) {
+    // console.log(title.toString())
+    const temp = title.toString().slice(start, end);
+    return temp;
   });
 };
 

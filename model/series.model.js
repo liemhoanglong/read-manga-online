@@ -5,7 +5,10 @@ var seriesSchema = new mongoose.Schema({
 	name: String,
 	author: String,
 	postedDate: Date,
-	postedBy: mongoose.Schema.Types.ObjectId,
+	postedBy: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: "Member"
+	}],
 	genreList: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Genre"
@@ -16,4 +19,4 @@ var seriesSchema = new mongoose.Schema({
 }, { collection: 'Series' });
 //tạo model
 
-module.exports = mongoose.model("Series", seriesSchema);
+module.exports = mongoose.model('Series', seriesSchema, 'Series');

@@ -5,7 +5,7 @@
       <div class="row mt_10">
         <div class="col-md-4">
           <div class="series-box-img">
-            <img data-name="product_image" src={{{series.thumbnail}}} alt="" class="series-img">
+            <img data-name="product_image" src={{{series.thumbnail}}} alt={{{series.name}}} class="series-img">
           </div>
         </div>
         <div class="col-md-8 prodetail caption product-thumb">
@@ -14,12 +14,12 @@
           <ul class="list-unstyled product_info mtb_20">
             <li>
               <label>Tác giả: </label>
-              <span><a href="#">{{series.author}}</a></span>
+              <span><a href="/author/{{series.author}}">{{series.author}}</a></span>
             </li>
             <li>
               <label>Thể loại: </label>
               {{#each series.genreList}}
-              <span><a href="/genre/?id={{this.id}}">{{this.name}}</a></span>
+              <span><a href="/genre/{{this.id}}">{{this.name}}</a></span>
               {{/each}}
             </li>
             <li>
@@ -30,7 +30,13 @@
               <label>Đánh giá: </label>
               <span>8/10</span>
             </li>
+            <li>
+              <label>Lượt thích: </label>
+              <span>10</span>
+            </li>
           </ul>
+          <button type="button" class="btn mb_30"><i class="fa fa-eye"></i> Theo dõi</button>
+          <button type="button" class="btn mb_30"><i class="fa fa-thumbs-up"></i> Thích</button>
           <hr>
           <label class="mt_20">Tóm tắt: </label>
           <p>{{series.summary}}</p>
@@ -42,9 +48,16 @@
         <hr />
         <div class="list-chapter">
           {{#each chapters}}
-          <a href="chapter?id={{this.id}}">
-            <p>{{this.name}}</p>
-          </a>
+          <div class="row" style="max-width: 100%">
+            <a href="chapter?id={{this.id}}">
+              <div class="col-xs-9">
+                <p>{{this.name}}</p>
+              </div>
+              <div class="pull-right">
+                <p>{{sliceString this.postedDate 4 15}}</p>
+              </div>
+            </a>
+          </div>
           <hr />
           {{/each}}
         </div>
@@ -55,23 +68,20 @@
       <div id="exTab5" class="mtb_30">
         <ul class="nav nav-tabs">
           <!-- <li class="active"> <a href="#1c" data-toggle="tab">Overview</a> </li> -->
-          <li class="active"><a href="#2c" data-toggle="tab">Reviews (2)</a> </li>
+          <li class="active"><a href="#2c" data-toggle="tab">Nhận xét {{comment.length}}</a> </li>
           <!-- <li><a href="#3c" data-toggle="tab">Solution</a> </li> -->
         </ul>
         <div class="tab-content ">
-
           <div class="tab-pane active pt_20" id="2c">
-            <form class="form-horizontal">
-              <div id="review"></div>
-              <!-- <h4 class="mt_20 mb_30">Write a review</h4> -->
+            <form class="form-horizontal" action="/comment/{{series._id}}" method="POST">
               <div class="required">
                 <div class="row">
                   <div class="col-sm-10">
-                    <input name="text" value="" id="input-review" placeholder="Comment" class="form-control input-lg"
+                    <input name="comment" id="input-review" placeholder="Nhập nhận xét" class="form-control input-lg"
                       required="" type="text">
                   </div>
                   <div class="col-sm-2">
-                    <button type="submit" class="btn btn-default btn-lg">Submit</button>
+                    <button type="submit" class="btn btn-default btn-lg" style="text-transform: none">Gửi</button>
                   </div>
                 </div>
               </div>
@@ -79,34 +89,21 @@
           </div>
         </div>
         <ul class="comment-list mt_30">
+          {{#each comments}}
           <li class="comment">
             <hr>
             <article class="comment-body mtb_20">
-              <div class="comment-avatar"> <img alt="" src="/images/user2.jpg"> </div>
+              {{!-- <div class="comment-avatar"> <img alt="" src="/images/user2.jpg"> </div> --}}
               <div class="comment-main">
-                <h5 class="author-name">Radley Lobortis <small class="comment-date">8 months ago</small> </h5>
+                <h5 class="author-name">{{this.member.fullName}} <small class="comment-date">1 ngày trước</small> </h5>
 
-                <div class="comment-content mt_10">Sed lobortis rpi luctus. Aenean posuere nulla in turluctus. Aenean
-                  posuere nulla in turs porttitor larpis porttitor larpis porttitor lauctus. Aenean posuere nulla in
-                  turpis porttitor laoreet.</div>
+                <div class="comment-content mt_10">{{this.content}}</div>
               </div>
             </article>
             <hr>
           </li>
-          <li class="comment">
-            <hr>
-            <article class="comment-body mtb_20">
-              <div class="comment-avatar"> <img alt="" src="/images/user1.jpg"> </div>
-              <div class="comment-main">
-                <h5 class="author-name">Sradle Vivamus <small class="comment-date">8 days ago</small> </h5>
-                <div class="comment-content mt_10">Vivamus imperdiet ex sed lobortis luctus. Aenean posuere nulla in
-                  turpis porttitor laoreet. Quisque finibus aliquet purus. Ut et mi eu ante interdum dignissim
-                  pellentesque a mi.</div>
-              </div>
-            </article>
-          </li>
+          {{/each}}
         </ul>
-
       </div>
     </div>
   </div>

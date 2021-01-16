@@ -1,0 +1,94 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            {{> memberSidebar}}
+        </div>
+        <div class="col-sm-9 user-container">
+            <h1 class="title">Chỉnh sửa truyện</h1>
+            <form action="/members/series-update" method="POST">
+                <div class="row">
+                    <label for="thumbnail" class="col-sm-2 col-form-label"><i class="fa fa-link"></i> Link ảnh bìa</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="thumbnail" id="thumbnail" value="{{series.thumbnail}}">
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="name" class="col-sm-2 col-form-label"><i class="fa fa-book"></i> Tên truyện</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="name" id="name" value="{{series.name}}">
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="author" class="col-sm-2 col-form-label"><i class="fa fa-user"></i> Tác giả</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="author" id="author" value="{{series.author}}">
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="genre" class="col-sm-2 col-form-label"><i class="fa fa-tag"></i> Thể loại</label>
+                    <div class="col-sm-10">
+                        <select class="form-select" aria-label="Default select example" name="genre" id="genre">
+                            {{#each allGenres}}
+                            <option value="{{this._id}}">{{this.name}}</option>
+                            {{/each}}
+                        </select>
+                        <button type="button" class="btn btn-secondary">
+                            <i class="fa fa-plus"></i> Thêm thể loại
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="summary" class="col-form-label"><i class="fa fa-file"></i> Nội dung</label>
+                </div>
+                <div class="row">
+                    <textarea class="form-control" name="summary" id="summary">{{series.summary}}</textarea>
+                </div>
+                <div class="row">
+                    <label for="summary" class="col-form-label"><i class="fa fa-list"></i> Danh sách chương</label>
+                </div>
+                <div class="row">
+                    <a href="#" class="btn btn-secondary"><i class="fa fa-plus"></i> Đăng chương truyện</a>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        Tên chapter
+                    </div>
+                    <div class="col-sm-2">
+                        Tình trạng
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="#" class="btn btn-secondary"><i class="fa fa-edit"></i></a>
+                        <a href="#" class="btn btn-secondary"><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        Tên chapter
+                    </div>
+                    <div class="col-sm-2">
+                        Tình trạng
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="#" class="btn btn-secondary"><i class="fa fa-edit"></i></a>
+                        <a href="#" class="btn btn-secondary"><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        Tên chapter
+                    </div>
+                    <div class="col-sm-2">
+                        Tình trạng
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="#" class="btn btn-secondary"><i class="fa fa-edit"></i></a>
+                        <a href="#" class="btn btn-secondary"><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
+                <div class="row submit-button">
+                    <button type="submit" class="btn btn-secondary">Lưu truyện</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -3,8 +3,8 @@ var mongoose = require('mongoose');
 const reportSeriesSchema = mongoose.Schema(
     {
         summary: String,
-        series: mongoose.Schema.Types.ObjectId,
-        reportedBy: mongoose.Schema.Types.ObjectId,
+        series: {type: mongoose.Schema.Types.ObjectId, ref:"Series"},
+        reportedBy: {type: mongoose.Schema.Types.ObjectId, ref:"Member"},
         reportedDate: Date
     }
 );

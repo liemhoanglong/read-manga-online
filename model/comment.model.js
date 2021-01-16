@@ -3,8 +3,9 @@ var mongoose = require('mongoose');
 const commentSchema = mongoose.Schema(
     {
         content: String,
-        member: mongoose.Schema.Types.ObjectId,
-        series: mongoose.Schema.Types.ObjectId
+        member: {type: mongoose.Schema.Types.ObjectId, ref: "Member"},
+        series: {type: mongoose.Schema.Types.ObjectId, ref: "Series"},
+        postedDate: Date,
     }
 );
 
