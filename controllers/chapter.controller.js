@@ -1,4 +1,5 @@
 const uuidv4 = require("../services/utils").uuidv4();
+const createError = require("http-errors");
 const chapterService = require("../services/chapter.service");
 module.exports = {
   getByChapterId: async (req, res, next) => {
@@ -34,9 +35,10 @@ module.exports = {
         nextChap,
       });
     } catch (err) {
-      res.json({
-        error: err,
-      });
+      // res.json({
+      //   error: err,
+      // });
+      next(createError(400));
     }
   },
   vwCreate: async (req, res, next) => {
