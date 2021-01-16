@@ -22,7 +22,7 @@ module.exports = {
 		let startIndex = (page - 1) * limit;
 		let endIndex = page * limit;
 
-		let series = await (seriesServices.getAllSeries());
+		let series = await (seriesServices.getAllSeriesValidated());
 		if (req.query.sort){
 			console.log(req.query.sort)
 			if (req.query.sort == 1){
