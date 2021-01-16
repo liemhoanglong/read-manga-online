@@ -27,4 +27,14 @@ module.exports = {
       return false;
     }
   },
+  
+  // Begin of Nguyen Manh Linh's works====================================================================
+  unfollow: async (memberID, seriesID) => {
+    var member = await MemberModel.findOne({ _id: memberID });
+    const indexTobeDelete = member.favoriteSeries.indexOf(seriesID);
+    member.favoriteSeries.splice(indexTobeDelete, 1);
+    member.save();
+  }
+  // End of Nguyen Manh Linh's works======================================================================
+  
 };

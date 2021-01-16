@@ -101,8 +101,6 @@ module.exports = {
         res.render('series-update', { series: series, allGenres: allGenres });
     },
     updateSeries: async (req, res) => {
-        console.log(req.body);
-
         const body = req.body;
 
         await SeriesService.updateSeries(
@@ -115,6 +113,10 @@ module.exports = {
         );
 
         res.redirect('/members/series-posted');
+    },
+    unfollow: async (req, res) => {
+        await MemberService.unfollow(req.user._id, req.params.id);
+        res.redirect('/members/series-following');
     }
     // End of Nguyen Manh Linh's works ============================================================================
 }
