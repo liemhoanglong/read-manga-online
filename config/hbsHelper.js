@@ -19,4 +19,23 @@ module.exports = function (hbs) {
     this._sections[name] = options.fn(this);
     return null;
   });
+
+  hbs.registerHelper("select", function (value, options) {
+    return options
+      .fn(this)
+      .split("\n")
+      .map(function (v) {
+        const t = 'value="' + value + '"';
+        return !RegExp(t).test(v)
+          ? v
+          : v.replace(t, t + ' selected="selected"');
+      })
+      .join("\n");
+  });
+  hbs.registerHelper("selectState", (state, value) => {
+    if (state === value) {
+      return "selected";
+    }
+    return "";
+  });
 };

@@ -4,23 +4,40 @@ module.exports = {
   getByChapterId: async (req, res, next) => {
     const { id } = req.params;
     try {
-      console.log("id-", id);
       const chapter = await chapterService.getById(id);
+      let chapterList = [];
+      if (chapter) {
+        const seriesId = chapter.series;
+        chapterList = await chapterService.getChapterBySeriesId(seriesId);
+      }
+      // Setting pagination
+      const curIndex = chapterList.findIndex((chapter) => chapter._id == id);
+      const size = chapterList.length;
+      const prevIndex = curIndex - 1;
+      const nextIndex = curIndex + 1;
+      const prevChap =
+        size >= 0 ? (prevIndex >= 0 ? chapterList[prevIndex]._id : null) : null;
+      const nextChap =
+        size >= 0
+          ? nextIndex < size
+            ? chapterList[nextIndex]._id
+            : null
+          : null;
+      // chapterList.forEach((chapter) => console.log(chapter._id));
       const images = chapter.imageList ? chapter.imageList : [];
-      res.render("chapter/index", { title: "Chapter", chapter, images });
+      res.render("chapter/index", {
+        title: "Chapter",
+        chapter,
+        images,
+        chapterList,
+        prevChap,
+        nextChap,
+      });
     } catch (err) {
       res.json({
         error: err,
       });
     }
-    // const chapter = [
-    //   {
-    //     _id: uuidv4,
-    //     name: "Name 1",
-    //     src:
-    //       "https://canhrau.com/wp-content/uploads/2020/12/manga-la-gi-cac-the-loai-manga-hinh-1.jpg",
-    //   },
-    // ];
   },
   vwCreate: async (req, res, next) => {
     res.render("chapter/create", { title: "Create a new chapter" });
