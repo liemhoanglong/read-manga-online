@@ -9,11 +9,22 @@ module.exports = {
       return err;
     }
   },
+
+  getBySeriesID:async (id) => {
+    try {
+      const chapter = await Chapter.find({series: id});
+      return chapter;
+    } catch (err) {
+      return err;
+    }
+  },
+
   create: async (data) => {
     console.log(1, `chapter`, data);
     const chapter = new Chapter(data);
     return chapter.save();
   },
+
   update: async (data) => {
     console.log(1, `chapter`, data);
     const chapterId = data._id;
