@@ -2,15 +2,23 @@ var series = require('../model/series.model');
 
 module.exports= {
 	getAllSeries: async() => {
+		let res = await series.find();
+		// console.log(res)
+		return res
+	},
+
+	getAllSeriesValidated: async() => {
 		//get all series validated
 		let res = await series.find({status: 1});
-		// console.log(res)
+		// res.forEach(element => {
+		// 	console.log(element.name)
+		// });
 		return res
 	},
 
 	getSeries: async(id) => {
 		//get series validated
-		let res = await series.findOne({$and:[{_id: id}, {status: 1}]}).populate("genreList");
+		let res = await series.findById(id).populate("genreList");
 		// let res = await series.findById(id);
 		// console.log(res)
 		return res

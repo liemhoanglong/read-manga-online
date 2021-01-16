@@ -148,7 +148,9 @@
                 <li> <a href="single_blog.html">Truyện full</a></li>
               </ul>
             </li>
-            <li> <a href="follow.html">Theo dõi</a></li>
+            {{#if user}}
+            <li> <a href="members/series-following">Theo dõi</a></li>
+            {{/if}}
           </ul>
         </div>
         <!-- /.nav-collapse -->
