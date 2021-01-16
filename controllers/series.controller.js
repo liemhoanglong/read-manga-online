@@ -2,65 +2,113 @@
 // const bcrypt = require('bcryptjs');
 
 const seriesServices = require('../services/series.services');
-const handlebars= require('hbs');
+const commentServices = require('../services/comment.service');
+const chapterServices = require('../services/chapter.service');
 
-handlebars.registerHelper("when",function(operand_1, operator, operand_2, options) {
-  var operators = {
-	  'eq': (l,r) => l == r,              							 //  {{/when}}
-	  'noteq': (l,r) => l != r,
-	  'gt': (l,r) => (+l) > (+r),                        // {{#when var1 'eq' var2}}
-	  'gteq': (l,r) => ((+l) > (+r)) || (l == r),        //               eq
-	  'lt': (l,r) => (+l) < (+r),                        // {{else when var1 'gt' var2}}
-	  'lteq': (l,r) => ((+l) < (+r)) || (l == r),        //               gt
-	  'or': (l,r) => l || r,                             // {{else}}
-	  'and': (l,r) => l && r,                            //               lt
-	  '%': (l,r) => (l % r) === 0                        // {{/when}}
-  }
-  , result = operators[operator](operand_1,operand_2);
+module.exports = {
+	showSeries: async (req, res, next) => {
+		const limit = 8;
+		let page = Number(1);
+		if (req.query.page) {
+			page = req.query.page;
+		} else {
+			page = 1;
+		}
+		let prepage = --page;
+		++page
+		let nextpage = ++page;
+		--page
+		//console.log(page);
+		let startIndex = (page - 1) * limit;
+		let endIndex = page * limit;
 
-  if (result) return options.fn(this);
-  else  return options.inverse(this);
-});
+		let series = await (seriesServices.getAllSeries());
+		if (req.query.sort){
+			console.log(req.query.sort)
+			if (req.query.sort == 1){
+				series = series.sort((a,b) => (b.name.localeCompare(a.name) < 0) ? 1 : ((a.name.localeCompare(b.name) < 0) ? -1 : 0))
+			}else if (req.query.sort == 2){
+				series = series.sort((a,b) => (a.name.localeCompare(b.name) < 0) ? 1 : ((b.name.localeCompare(a.name) < 0) ? -1 : 0))
+			}
+		}
 
-module.exports.showSeries = async (req, res, next) => {
-	const limit = 8;
-	let page = Number(1);
-	if (req.query.page) {
-		page = req.query.page;
-	} else {
-		page = 1;
-	}
-	let prepage = --page;
-	++page
-	let nextpage = ++page;
-	--page
-	//console.log(page);
-	let startIndex = (page - 1) * limit;  
-	let endIndex = page * limit;
+		let total = Math.ceil(series.length / limit);
+		let listpage = []
+		for (let i = 1; i <= total; i++) {
+			listpage.push(i);
+		}
+		// console.log(listpage);
+		series = series.slice(startIndex, endIndex);
 
-	let series = await(seriesServices.getAllSeries())
+		res.render('home', {
+			series,
+			page,
+			prepage,
+			nextpage,
+			total,
+			listpage,
+		});
+	},
+
+	showSeriesDetail: async (req, res, next) => {
+		let series = await (seriesServices.getSeries(req.params.id));
+		// let genres = await(genreServices.getAll());
+		let chapters = await (chapterServices.getBySeriesID(req.params.id));
+		// console.log(series)
+		let comments = await (commentServices.getAllBySeries(req.params.id));
+		// console.log(comments)
+
+		res.render('series-detail', {
+			series,
+			// genres,
+			chapters,
+			comments,
+		});
+	},
+
+	searchSeries: async (req, res, next) => {
+		console.log(req.query.q)
+		let series = await (seriesServices.getByName(req.query.q));
+
+		res.render('search-series', {
+			series,
+			query: req.query.q,
+		});
+	},
+
+	genreSeries: async (req, res, next) => {
+		console.log(req.params.id)
+		let series = await (seriesServices.getByGenre(req.params.id));
+		let text = 'thuộc thể loại "' + series[0].genreList[0].name + '"';
+		res.render('genre-series', {
+			series,
+			genre: text,
+		});
+	},
+
+	authorSeries: async (req, res, next) => {
+		console.log(req.params.name)
+		let series = await (seriesServices.getByAuthor(req.params.name));
+		let text = 'thuộc tác giả "' + req.params.name + '"';
+		res.render('genre-series', {
+			series,
+			genre: text,
+		});
+	},
+
+	comment: async (req, res, next) => {
+		// console.log("-------------------------------------------------")
+		// console.log(req.params.id);
+		// console.log(req.user._id);
+		// console.log(req.body.comment);
+		seriesId = req.params.id;
+		commentServices.create({
+			content: req.body.comment,
+			member: req.user._id,
+			series: req.params.id,
+			postedDate: Date.now()
+		})
+        res.redirect(`/series/${seriesId}`);
+	},
 	
-	let total = Math.ceil(series.length/limit);
-	let listpage = []
-	for (let i = 1; i <= total; i++) {
-	   listpage.push(i);
-	}
-	// console.log(listpage);
-	series = series.slice(startIndex, endIndex);
-
-	res.render('home', {
-		items: series,
-		page,
-		prepage,
-		nextpage,
-		total,
-		listpage,
-	});
-};
-
-module.exports.showSeriesDetail = async (req, res, next) => {
-	let series = await(seriesServices.getSeries(req.query.id))
-	res.render('series-detail', {
-		series,
-	});
-};
+}

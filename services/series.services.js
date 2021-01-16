@@ -2,14 +2,17 @@ var series = require('../model/series.model');
 
 module.exports= {
 	getAllSeries: async() => {
-		let res = await series.find();
-		console.log(res)
+		//get all series validated
+		let res = await series.find({status: 1});
+		// console.log(res)
 		return res
 	},
 
 	getSeries: async(id) => {
-		let res = await series.findById(id);
-		console.log(res)
+		//get series validated
+		let res = await series.findOne({$and:[{_id: id}, {status: 1}]}).populate("genreList");
+		// let res = await series.findById(id);
+		// console.log(res)
 		return res
 	},
 
@@ -45,7 +48,31 @@ module.exports= {
 		seriesUpdated.thumbnail = thumbnail;
 
 		seriesUpdated.save();
-	}
+	},
 	// End of Nguyen Manh Linh's works============================================================
+	
+	getByName: async (name) => {
+		const regex = new RegExp(escapeRegex(name), 'gi');
+		let res = await series.find({ name: regex});
+		return res
+	},
+
+	getByGenre: async (genre) => {
+		let res = await series.find().populate({ path: "genreList", match: { _id: genre } });
+		res = res.filter((item => item.genreList.length > 0))
+		// console.log(res)
+		return res
+	},
+
+	getByAuthor: async (author) => {
+		const regex = new RegExp(escapeRegex(author), 'gi');
+		let res = await series.find({author: regex});
+		console.log(res)
+		return res
+	},
 }
+
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
 
