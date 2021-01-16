@@ -38,4 +38,30 @@ module.exports = function (hbs) {
     }
     return "";
   });
+  hbs.registerHelper(
+    "when",
+    function (operand_1, operator, operand_2, options) {
+      const operators = {
+          eq: (l, r) => l == r, //  {{/when}}
+          noteq: (l, r) => l != r,
+          gt: (l, r) => +l > +r, // {{#when var1 'eq' var2}}
+          gteq: (l, r) => +l > +r || l == r, //               eq
+          lt: (l, r) => +l < +r, // {{else when var1 'gt' var2}}
+          lteq: (l, r) => +l < +r || l == r, //               gt
+          or: (l, r) => l || r, // {{else}}
+          and: (l, r) => l && r, //               lt
+          "%": (l, r) => l % r === 0, // {{/when}}
+        },
+        result = operators[operator](operand_1, operand_2);
+
+      if (result) return options.fn(this);
+      else return options.inverse(this);
+    }
+  );
+
+  hbs.registerHelper("sliceString", function (title, start, end) {
+    // console.log(title.toString())
+    const temp = title.toString().slice(start, end);
+    return temp;
+  });
 };
