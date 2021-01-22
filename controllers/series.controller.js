@@ -4,6 +4,7 @@
 const seriesServices = require('../services/series.services');
 const commentServices = require('../services/comment.service');
 const chapterServices = require('../services/chapter.service');
+const genreServices = require('../services/genre.service');
 
 module.exports = {
 	showSeries: async (req, res, next) => {
@@ -66,6 +67,26 @@ module.exports = {
 		});
 	},
 
+	like: async (req, res, next) => {
+		await seriesServices.likeSeries(req.params.id);
+		res.redirect(`/series/${req.params.id}`);
+	},
+
+	view: async (req, res, next) => {
+		await seriesServices.viewSeries(req.params.id);
+		res.redirect(`/chapters/${req.params.idchap}/detail`);
+	},
+
+	follow: async (req, res, next) => {
+		await seriesServices.followSeries(req.params.id, req.user._id);
+		res.redirect(`/series/${req.params.id}`);
+	},
+
+	report: async (req, res, next) => {
+		await seriesServices.reportSeries(req.params.id, req.user._id);
+		res.redirect(`/series/${req.params.id}`);
+	},
+
 	searchSeries: async (req, res, next) => {
 		console.log(req.query.q)
 		let series = await (seriesServices.getByName(req.query.q));
@@ -79,7 +100,8 @@ module.exports = {
 	genreSeries: async (req, res, next) => {
 		console.log(req.params.id)
 		let series = await (seriesServices.getByGenre(req.params.id));
-		let text = 'thuộc thể loại "' + series[0].genreList[0].name + '"';
+		let genre = await genreServices.getGenre(req.params.id)
+		let text = 'thuộc thể loại "' + genre.name + '"';
 		res.render('genre-series', {
 			series,
 			genre: text,

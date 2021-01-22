@@ -13,6 +13,9 @@ var seriesSchema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Genre"
 	}],
+	like: Number,
+	view: Number,
+	rate: Number,
 	status: Number,
 	summary: String,
 	thumbnail: String
