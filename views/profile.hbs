@@ -43,7 +43,7 @@
                                 <form id="" action="/members/profile" method="post">
                                     <div class="row">
                                         <div class="form-group">
-                                            <span> Avatar</span>
+                                            <span> Ảnh đại diện</span>
                                             <input type="text" name="avatar" tabindex="2" class="form-control"
                                                 placeholder="avatar" value="{{user.avatar}}">
                                         </div>
@@ -52,11 +52,11 @@
                                             <input type="text" name="fullName" id="fullName" tabindex="2"
                                                 class="form-control" placeholder="Full Name" value="{{user.fullName}}">
                                         </div>
-                                        <div class="form-group">
+                                        {{!-- <div class="form-group">
                                             <span>Email</span>
                                             <input type="text" name="email" id="email" tabindex="2"
-                                                class="form-control" placeholder="email" value="{{user.email}}">
-                                        </div>
+                                                class="form-control" placeholder="email" value="{{user.email}}" disabled>
+                                        </div> --}}
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-sm-6 col-sm-offset-3">
