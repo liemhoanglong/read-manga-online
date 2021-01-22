@@ -11,10 +11,10 @@
             {{#each seriesPosted}}
             <div class="row">
                 <div class="col-sm-2">
-                    <a href="/series?id={{this._id}}"><img src="{{this.thumbnail}}" alt=""></a>
+                    <a href="/series/{{this._id}}"><img src="{{this.thumbnail}}" alt=""></a>
                 </div>
                 <div class="col-sm-6">
-                    <a href="/series?id={{this._id}}"><h3>{{this.name}}</h3></a>
+                    <a href="/series/{{this._id}}"><h3>{{this.name}}</h3></a>
                     <p class="series-posted-status">
                         {{#when this.status 'eq' -1}}
                         Chưa duyệt

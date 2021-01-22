@@ -8,10 +8,10 @@
             {{#each seriesFollowing}}
             <div class="row">
                 <div class="col-sm-2">
-                    <a href="/series?id={{this._id}}"><img src="{{this.thumbnail}}" alt=""></a>
+                    <a href="/series/{{this._id}}"><img src="{{this.thumbnail}}" alt=""></a>
                 </div>
                 <div class="col-sm-6">
-                    <a href="/series?id={{this._id}}"><h3>{{this.name}}</h3></a>
+                    <a href="/series/{{this._id}}"><h3>{{this.name}}</h3></a>
                 </div>
                 <div class="col-sm-4 align-right">
                     <a href="/members/unfollow/{{this._id}}" class="btn btn-secondary"><i class="fa fa-times"></i> Bỏ theo dõi</a>
