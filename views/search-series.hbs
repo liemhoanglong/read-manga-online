@@ -19,7 +19,7 @@
         <div class="col-sm-6 sort-wrapper">
           <label class="control-label">Tìm được: {{series.length}} truyện có từ "{{query}}"</label>
         </div>
-        <div class="sort-wrapper pull-right">
+        {{!-- <div class="sort-wrapper pull-right">
           <label class="control-label" for="input-sort">Sort By :</label>
           <div class="sort-inner">
             <select id="input-sort" class="form-control">
@@ -35,7 +35,7 @@
             </select>
           </div>
           <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
-        </div>
+        </div> --}}
       </div>
       <div class="row">
         {{#each series}}
@@ -49,7 +49,14 @@
                 </div>
                 <div class="caption product-detail text-center">
                   <h4 data-name="product_name" class="product-name mt_20"><a href="series/{{this.id}}" title="Casual Shirt With Ruffle Hem">{{this.name}}</a></h4>
-                  <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-x"></i></span> </div>
+                  <div class="rating">
+                    {{#times this.rate}}
+                      <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i></span> 
+                    {{/times}}
+                    {{#times2 10 this.rate}}
+                      <span class="fa fa-stack"><i class="fa fa-star fa-stack-x"></i></span> 
+                    {{/times2}}
+                  </div>
                 </div>
               </div>
             </div>
