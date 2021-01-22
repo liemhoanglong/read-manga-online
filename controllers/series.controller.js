@@ -30,6 +30,12 @@ module.exports = {
 				series = series.sort((a,b) => (b.name.localeCompare(a.name) < 0) ? 1 : ((a.name.localeCompare(b.name) < 0) ? -1 : 0))
 			}else if (req.query.sort == 2){
 				series = series.sort((a,b) => (a.name.localeCompare(b.name) < 0) ? 1 : ((b.name.localeCompare(a.name) < 0) ? -1 : 0))
+			}else if (req.query.sort == 3){
+				series = series.sort((a,b) => (a.like < b.like) ? 1 : ((a.like > b.like) ? -1 : 0))
+			}else if (req.query.sort == 4){
+				series = series.sort((a,b) => (a.view < b.view) ? 1 : ((a.like > b.like) ? -1 : 0))
+			}else if (req.query.sort == 5){
+				series = series.sort((a,b) => (a.rate < b.rate) ? 1 : ((a.like > b.like) ? -1 : 0))
 			}
 		}
 

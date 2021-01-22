@@ -38,7 +38,7 @@ module.exports= {
 			status: -1,
 			like: 0,
 			view: 0,
-			rate: 0,
+			rate: 7,
 			summary: summary,
 			thumbnail: thumbnail
 		});
