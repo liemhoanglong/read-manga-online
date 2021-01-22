@@ -42,6 +42,7 @@ module.exports = {
       status: -1,
       imageList: images,
     };
+    if (req.body.images) delete req.body.images;
     req.body = Object.assign({}, req.body, body);
     next();
     // req.files is array of `photos` files

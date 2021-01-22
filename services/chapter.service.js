@@ -37,4 +37,16 @@ module.exports = {
     );
     return chapter;
   },
+  getChapterBySeriesId: async (seriesId) => {
+    if (!seriesId) return new Error(`seriesId is undefined [${seriesId}].`);
+    const filter = {
+      series: seriesId,
+    };
+    try {
+      const chapter = await Chapter.find(filter).sort({ postedDate: -1 });
+      return chapter;
+    } catch (err) {
+      return err;
+    }
+  },
 };
