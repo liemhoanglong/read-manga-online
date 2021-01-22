@@ -1,6 +1,7 @@
 const MemberService = require('../services/member.services');
 const SeriesService = require('../services/series.services');
 const GenreService = require('../services/genre.service');
+const ChapterService = require('../services/chapter.service');
 
 module.exports = {
     getMemberProfile: (req, res, next)=>{
@@ -98,9 +99,9 @@ module.exports = {
         const series  = await SeriesService.getSeries(req.params.id);
         const allGenres = await GenreService.getAllGenres();
 
-        console.log(series);
+        const chapters = await ChapterService.getBySeriesID(series._id);
 
-        res.render('series-update', { series: series, allGenres: allGenres });
+        res.render('series-update', { series: series, allGenres: allGenres, chapters: chapters });
     },
     updateSeries: async (req, res) => {
         const body = req.body;
@@ -109,7 +110,7 @@ module.exports = {
             req.params.id,
             body.name,
             body.author,
-            [body.genre],
+            body.genre,
             body.summary,
             body.thumbnail
         );
