@@ -7,7 +7,8 @@
             <h1 class="title">Đăng truyện</h1>
             <form action="/members/series-posting" method="POST">
                 <div class="row">
-                    <label for="thumbnail" class="col-sm-2 col-form-label"><i class="fa fa-link"></i> Link ảnh bìa</label>
+                    <label for="thumbnail" class="col-sm-2 col-form-label"><i class="fa fa-link"></i> Link ảnh
+                        bìa</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="thumbnail" id="thumbnail">
                     </div>
@@ -15,7 +16,7 @@
                 <div class="row">
                     <label for="name" class="col-sm-2 col-form-label"><i class="fa fa-book"></i> Tên truyện</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="name" id="name">
+                        <input type="text" class="form-control" name="name" id="name" required>
                     </div>
                 </div>
                 <div class="row">
@@ -25,15 +26,21 @@
                     </div>
                 </div>
                 <div class="row">
-                    <label for="genre" class="col-sm-2 col-form-label"><i class="fa fa-tag"></i> Thể loại</label>
+                    <label for="genres" class="col-sm-2 col-form-label"><i class="fa fa-tag"></i> Thể loại</label>
+                    <div id="genres" class="col-sm-10">
+
+                        {{!-- Genres --}}
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-form-label"></label>
                     <div class="col-sm-10">
-                        <select class="form-select" aria-label="Default select example" name="genre" id="genre">
-                            {{#each allGenres}}
-                            <option value="{{this._id}}">{{this.name}}</option>
-                            {{/each}}
-                        </select>
-                        <button type="button" class="btn btn-secondary">
+                        <button type="button" class="btn btn-secondary" onclick="addGenre()">
                             <i class="fa fa-plus"></i> Thêm thể loại
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="deleteGenre()">
+                            <i class="fa fa-minus"></i> Xóa
                         </button>
                     </div>
                 </div>
@@ -50,3 +57,67 @@
         </div>
     </div>
 </div>
+<script>
+    var allGenres = [
+        {
+            id: "5ffbb82936ba3a07f4b669e8",
+            name: "Hành động"
+        },
+        {
+            id: "5ffbb85636ba3a07f4b669e9",
+            name: "Lịch sử"
+        },
+        {
+            id: "5ffbb85e36ba3a07f4b669ea",
+            name: "Phiêu lưu"
+        },
+        {
+            id: "5ffbb86836ba3a07f4b669eb",
+            name: "Hài hước"
+        },
+        {
+            id: "5ffbb86f36ba3a07f4b669ec",
+            name: "Học đường"
+        },
+        {
+            id: "5ffd6e617eac403c106e630c",
+            name: "Thể thao"
+        },
+        {
+            id: "5ffd6e787eac403c106e630d",
+            name: "Viễn tưởng"
+        },
+        {
+            id: "5ffd6e8d7eac403c106e630e",
+            name: "Kinh dị"
+        },
+        {
+            id: "60029d48ed62883fe489970a",
+            name: "Trinh thám"
+        },
+        {
+            id: "6002b273ed62883fe4899713",
+            name: "Ẩm thực"
+        },
+    ];
+
+    var addGenre = function () {
+        var select = document.createElement('select');
+        select.class = "form-select";
+        select.name = "genre";
+
+        allGenres.forEach(genre => {
+            var option = document.createElement('option');
+            option.value = genre.id;
+            option.innerHTML = genre.name;
+            select.appendChild(option);
+        });
+
+        document.getElementById('genres').appendChild(select);
+    }
+
+    var deleteGenre = function() {
+        var genres = document.getElementById('genres');
+        genres.removeChild(genres.childNodes[genres.childNodes.length - 1]);
+    }
+</script>

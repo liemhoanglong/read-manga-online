@@ -83,7 +83,7 @@ module.exports = {
             body.name,
             body.author,
             req.user._id,
-            [body.genre],
+            body.genre,
             body.summary,
             body.thumbnail
         );
@@ -97,6 +97,8 @@ module.exports = {
     loadUpdateSeries: async (req, res) => {
         const series  = await SeriesService.getSeries(req.params.id);
         const allGenres = await GenreService.getAllGenres();
+
+        console.log(series);
 
         res.render('series-update', { series: series, allGenres: allGenres });
     },
