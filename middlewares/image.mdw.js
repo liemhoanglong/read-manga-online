@@ -37,7 +37,7 @@ module.exports = {
     }
     const body = {
       name: req.body.name,
-      series: "5fe9afe0a747eb902440ef02",
+      series: req.body.seriesId,
       postedDate: new Date(),
       status: -1,
       imageList: images,
