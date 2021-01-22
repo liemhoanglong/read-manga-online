@@ -3,16 +3,16 @@ const Chapter = require("../model/chapter.model");
 module.exports = {
   getById: async (id) => {
     try {
-      const chapter = await Chapter.findById(id);
+      const chapter = await Chapter.findById(id).populate("series");
       return chapter;
     } catch (err) {
       return err;
     }
   },
 
-  getBySeriesID:async (id) => {
+  getBySeriesID: async (id) => {
     try {
-      const chapter = await Chapter.find({series: id});
+      const chapter = await Chapter.find({ series: id });
       return chapter;
     } catch (err) {
       return err;
