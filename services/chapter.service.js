@@ -43,7 +43,7 @@ module.exports = {
       series: seriesId,
     };
     try {
-      const chapter = await Chapter.find(filter).sort({ postedDate: -1 });
+      const chapter = await Chapter.find(filter).sort({ postedDate: 1 });
       return chapter;
     } catch (err) {
       return err;
