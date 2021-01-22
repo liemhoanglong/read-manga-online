@@ -22,20 +22,19 @@
                         <div class="row d-flex justify-content-center">
                             <h2>Thông tin tài khoản</h2>
                         </div>
-                        <div class="row" id="penel-show">
-                            <div class="col-5">
+                        <div class="row" id="penel-show" style="margin-left: 20px;">
+                            <div class="col-sm-8">
+                                <div class="mb_20"><b>Tên người dùng: </b><span>{{user.fullName}}</span></div>
+                                <div class="mb_20"><b>Email: </b><span>{{user.email}}</span></div>
+                                <button class="btn btn-default" id="toggle">Cập nhật</button>
+                            </div>
+                            <div class="col-sm-4">
                                 {{#ifUnd user.avatar}}
                                 <div>Bạn chưa có hình đại diện</div>
                                 {{else}}
                                 <img src="{{user.avatar}}" alt="avatar">
                                 {{/ifUnd}}
                             </div>
-                            <div class="col-9">
-                                <div>Tên người dùng: <span><b>{{user.fullName}}</b></span></div>
-                                <div>Email: <span><b>{{user.email}}</b></span></div>
-                                <button class="btn btn-default btn-lg" id="toggle">Cập nhật</button>
-                            </div>
-
                         </div>
                         <div class="row d-flex justify-content-center" id="penel-update"
                             style="display: none !important;">

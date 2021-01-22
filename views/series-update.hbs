@@ -5,7 +5,7 @@
         </div>
         <div class="col-sm-9 user-container">
             <h1 class="title">Chỉnh sửa truyện</h1>
-            <form action="/members/series-update" method="POST">
+            <form action="/members/series-update/{{series._id}}" method="POST">
                 <div class="row">
                     <label for="thumbnail" class="col-sm-2 col-form-label"><i class="fa fa-link"></i> Link ảnh bìa</label>
                     <div class="col-sm-10">
@@ -25,15 +25,32 @@
                     </div>
                 </div>
                 <div class="row">
-                    <label for="genre" class="col-sm-2 col-form-label"><i class="fa fa-tag"></i> Thể loại</label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-2 col-form-label"><i class="fa fa-tag"></i> Thể loại</label>
+                    <div id="genres" class="col-sm-10">
+                        {{#each series.genreList}}
                         <select class="form-select" aria-label="Default select example" name="genre" id="genre">
-                            {{#each allGenres}}
-                            <option value="{{this._id}}">{{this.name}}</option>
-                            {{/each}}
+                            <option value="5ffbb82936ba3a07f4b669e8" {{#when this._id 'eq' "5ffbb82936ba3a07f4b669e8"}}selected{{/when}}>Hành động</option>
+                            <option value="5ffbb85636ba3a07f4b669e9" {{#when this._id 'eq' "5ffbb85636ba3a07f4b669e9"}}selected{{/when}}>Lịch sử</option>
+                            <option value="5ffbb85e36ba3a07f4b669ea" {{#when this._id 'eq' "5ffbb85e36ba3a07f4b669ea"}}selected{{/when}}>Phiêu lưu</option>
+                            <option value="5ffbb86836ba3a07f4b669eb" {{#when this._id 'eq' "5ffbb86836ba3a07f4b669eb"}}selected{{/when}}>Hài hước</option>
+                            <option value="5ffbb86f36ba3a07f4b669ec" {{#when this._id 'eq' "5ffbb86f36ba3a07f4b669ec"}}selected{{/when}}>Học đường</option>
+                            <option value="5ffd6e617eac403c106e630c" {{#when this._id 'eq' "5ffd6e617eac403c106e630c"}}selected{{/when}}>Thể thao</option>
+                            <option value="5ffd6e787eac403c106e630d" {{#when this._id 'eq' "5ffd6e787eac403c106e630d"}}selected{{/when}}>Viễn tưởng</option>
+                            <option value="5ffd6e8d7eac403c106e630e" {{#when this._id 'eq' "5ffd6e8d7eac403c106e630e"}}selected{{/when}}>Kinh dị</option>
+                            <option value="60029d48ed62883fe489970a" {{#when this._id 'eq' "60029d48ed62883fe489970a"}}selected{{/when}}>Trinh thám</option>
+                            <option value="6002b273ed62883fe4899713" {{#when this._id 'eq' "6002b273ed62883fe4899713"}}selected{{/when}}>Ẩm thực</option>
                         </select>
-                        <button type="button" class="btn btn-secondary">
+                        {{/each}}
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+                        <button type="button" class="btn btn-secondary" onclick="addGenre()">
                             <i class="fa fa-plus"></i> Thêm thể loại
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="deleteGenre()">
+                            <i class="fa fa-minus"></i> Xóa
                         </button>
                     </div>
                 </div>
@@ -47,44 +64,28 @@
                     <label for="summary" class="col-form-label"><i class="fa fa-list"></i> Danh sách chương</label>
                 </div>
                 <div class="row">
-                    <a href="#" class="btn btn-secondary"><i class="fa fa-plus"></i> Đăng chương truyện</a>
+                    <a href="/chapters/create?seriesId={{series._id}}" class="btn btn-secondary"><i class="fa fa-plus"></i> Đăng chương truyện</a>
                 </div>
+                {{#each chapters}}
                 <div class="row">
                     <div class="col-sm-8">
-                        Tên chapter
+                        {{this.name}}
                     </div>
                     <div class="col-sm-2">
-                        Tình trạng
+                        {{#when this.status 'eq' -1}}
+                        Chưa duyệt
+                        {{else when this.status 'eq' 0}}
+                        Đã bị khóa
+                        {{else}}
+                        Bình thường
+                        {{/when}}
                     </div>
                     <div class="col-sm-2">
-                        <a href="#" class="btn btn-secondary"><i class="fa fa-edit"></i></a>
+                        <a href="/chapters/{{this._id}}/edit" class="btn btn-secondary"><i class="fa fa-edit"></i></a>
                         <a href="#" class="btn btn-secondary"><i class="fa fa-times"></i></a>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-8">
-                        Tên chapter
-                    </div>
-                    <div class="col-sm-2">
-                        Tình trạng
-                    </div>
-                    <div class="col-sm-2">
-                        <a href="#" class="btn btn-secondary"><i class="fa fa-edit"></i></a>
-                        <a href="#" class="btn btn-secondary"><i class="fa fa-times"></i></a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-8">
-                        Tên chapter
-                    </div>
-                    <div class="col-sm-2">
-                        Tình trạng
-                    </div>
-                    <div class="col-sm-2">
-                        <a href="#" class="btn btn-secondary"><i class="fa fa-edit"></i></a>
-                        <a href="#" class="btn btn-secondary"><i class="fa fa-times"></i></a>
-                    </div>
-                </div>
+                {{/each}}
                 <div class="row submit-button">
                     <button type="submit" class="btn btn-secondary">Lưu truyện</button>
                 </div>

@@ -88,6 +88,19 @@ module.exports= {
 		const result = await series.find({ postedBy: memberID });
 		return result;
 	},
+	updateSeries: async (id, name, author, genreList, summary, thumbnail) => {
+		const seriesUpdated = await series.findOne({ _id: id });
+
+		console.log(seriesUpdated);
+
+		seriesUpdated.name = name;
+		seriesUpdated.author = author;
+		seriesUpdated.genreList = genreList;
+		seriesUpdated.summary = summary;
+		seriesUpdated.thumbnail = thumbnail;
+
+		seriesUpdated.save();
+	},
 	// End of Nguyen Manh Linh's works============================================================
 	
 	getByName: async (name) => {
