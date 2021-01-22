@@ -24,19 +24,26 @@
             </li>
             <li>
               <label>Lượt xem: </label>
-              <span>1000</span>
+              <span>{{series.view}}</span>
             </li>
             <li>
               <label>Đánh giá: </label>
-              <span>8/10</span>
+              <span>{{series.rate}}/10</span>
             </li>
             <li>
               <label>Lượt thích: </label>
-              <span>10</span>
+              <span>{{series.like}}</span>
             </li>
           </ul>
-          <button type="button" class="btn mb_30"><i class="fa fa-eye"></i> Theo dõi</button>
-          <button type="button" class="btn mb_30"><i class="fa fa-thumbs-up"></i> Thích</button>
+          {{#if user}}
+          <a href="/follow/{{series.id}}" onclick="alertFollowPopUp()"><button type="button" class="btn mb_30"><i
+                class="fa fa-eye"></i> Theo
+              dõi</button></a>
+          <a href="/like/{{series.id}}"><button type="button" class="btn mb_30"><i class="fa fa-thumbs-up"></i>
+              Thích</button></a>
+          <a href="/report-series/{{series.id}}" onclick="alertPopUp()"><button type="button" class="btn mb_30"><i
+                class="fa fa-exclamation-triangle"></i> Báo cáo</button></a>
+          {{/if}}
           <hr>
           <label class="mt_20">Tóm tắt: </label>
           <p>{{series.summary}}</p>
@@ -49,14 +56,15 @@
         <div class="list-chapter">
           {{#each chapters}}
           <div class="row" style="max-width: 100%">
-            <a href="/chapters/{{this.id}}/detail">
-              <div class="col-xs-9">
-                <p>{{this.name}}</p>
-              </div>
-              <div class="pull-right">
-                <p>{{sliceString this.postedDate 4 15}}</p>
-              </div>
-            </a>
+            {{!-- <a href="/chapters/{{this.id}}/detail"> --}}
+              <a href="/view-series/{{series._id}}/{{this.id}}">
+                <div class="col-xs-9">
+                  <p>{{this.name}}</p>
+                </div>
+                <div class="pull-right">
+                  <p>{{sliceString this.postedDate 4 15}}</p>
+                </div>
+              </a>
           </div>
           <hr />
           {{/each}}
@@ -73,6 +81,7 @@
         </ul>
         <div class="tab-content ">
           <div class="tab-pane active pt_20" id="2c">
+            {{#if user}}
             <form class="form-horizontal" action="/comment/{{series._id}}" method="POST">
               <div class="required">
                 <div class="row">
@@ -86,6 +95,7 @@
                 </div>
               </div>
             </form>
+            {{/if}}
           </div>
         </div>
         <ul class="comment-list mt_30">
@@ -108,3 +118,13 @@
     </div>
   </div>
 </div>
+
+
+<script>
+  function alertPopUp() {
+    alert("Báo cáo của bạn đã được ghi nhận");
+  }
+  function alertFollowPopUp() {
+    alert("Theo dõi truyện thành công");
+  }
+</script>

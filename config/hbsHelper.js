@@ -64,4 +64,17 @@ module.exports = function (hbs) {
     const temp = title.toString().slice(start, end);
     return temp;
   });
+
+  hbs.registerHelper('times', function(n, block) {
+    var accum = '';
+    for(var i = 0; i < n; ++i)
+        accum += block.fn(i);
+    return accum;
+  });
+  hbs.registerHelper('times2', function(n, m, block) {
+    var accum = '';
+    for(var i = 0; i < n-m; ++i)
+        accum += block.fn(i);
+    return accum;
+  });
 };

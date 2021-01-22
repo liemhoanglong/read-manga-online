@@ -2819,6 +2819,7 @@ a.thumbnail.active {
 
 .footer {
     background: #424242;
+    bottom:0px;
 }
 
 .footer-title,
