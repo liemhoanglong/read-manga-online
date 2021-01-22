@@ -1,6 +1,7 @@
 const uuidv4 = require("../services/utils").uuidv4();
 const createError = require("http-errors");
 const chapterService = require("../services/chapter.service");
+const seriesService = require("../services/series.services");
 module.exports = {
   getByChapterId: async (req, res, next) => {
     const { id } = req.params;
@@ -42,7 +43,13 @@ module.exports = {
     }
   },
   vwCreate: async (req, res, next) => {
-    res.render("chapter/create", { title: "Create a new chapter" });
+    const { seriesId } = req.query;
+    try {
+      const series = await seriesService.getSeries(seriesId);
+      res.render("chapter/create", { title: "Create a new chapter", series });
+    } catch (err) {
+      next(createError(400));
+    }
   },
   vwUpdate: async (req, res, next) => {
     const { id } = req.params;
@@ -50,16 +57,14 @@ module.exports = {
       console.log("id-", id);
       const chapter = await chapterService.getById(id);
       const images = chapter.imageList ? chapter.imageList : [];
-
+      console.log(60, chapter);
       res.render("chapter/update", {
         title: "Update a chapter",
         chapter,
         images,
       });
     } catch (err) {
-      res.json({
-        error: err,
-      });
+      next(createError(400));
     }
   },
   create: async (req, res, next) => {
@@ -70,9 +75,7 @@ module.exports = {
       const chapterId = chapter._id;
       res.redirect(`/chapters/${chapterId}/detail`);
     } catch (err) {
-      res.json({
-        error: err,
-      });
+      next(createError(400));
     }
   },
   update: async (req, res, next) => {
@@ -83,9 +86,7 @@ module.exports = {
       const chapterId = chapter._id;
       res.redirect(`/chapters/${chapterId}/detail`);
     } catch (err) {
-      res.json({
-        error: err,
-      });
+      next(createError(400));
     }
   },
 };
